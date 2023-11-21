@@ -1,0 +1,125 @@
+{
+    "home" : {
+        "newsly": {
+            "app_readme": "<h1>Newsly</h1>\n<p>Today's Tabloids title's on once place, without additional bullshit!</p>",
+            "categories": [
+                "news",
+                "tabloids"
+            ],
+            "description": "Todays tabloids without additional bullshit!",
+            "healthy": true,
+            "healthy_error": null,
+            "home": "https://github.com/martinikolaev/newsly",
+            "location": "",
+            "latest_version": "1.0.5",
+            "latest_app_version": "1.2",
+            "latest_human_version": "0.2",
+            "last_update": "2023-11-11 09:32:55",
+            "name": "newsly",
+            "recommended": false,
+            "title": "Newsly",
+            "maintainers": [
+                {
+                    "name": "departy.xyz",
+                    "url": "https://github.com/martinikolaev/newsly/",
+                    "email": "na@na.com"
+                }
+            ],
+            "tags": [
+                "news",
+                "newsly",
+                "tabloids"
+            ],
+            "screenshots": [
+                "https://media.sys.truenas.net/apps/wg-easy/screenshots/screenshot1.png",
+                "https://media.sys.truenas.net/apps/wg-easy/screenshots/screenshot1.png"
+            ],
+            "sources": [
+                "https://github.com/WeeJeWel/wg-easy",
+                "https://github.com/truenas/charts/tree/master/charts/wg-easy"
+            ],
+            "icon_url": "https://raw.githubusercontent.com/martinikolaev/charts/master/logos/newsly.png"
+        },
+        "newsly-database": {
+            "app_readme": "<h1>Newsly Database</h1>\n<p>Today's Tabloids title's on once place, without additional bullshit!</p>",
+            "categories": [
+                "news",
+                "tabloids",
+                "database"
+            ],
+            "description": "Todays tabloids without additional bullshit!",
+            "healthy": true,
+            "healthy_error": null,
+            "home": "https://github.com/martinikolaev/newsly",
+            "location": "",
+            "latest_version": "1.0.4",
+            "latest_app_version": "0.2",
+            "latest_human_version": "0.2",
+            "last_update": "2023-11-11 09:32:55",
+            "name": "newsly-database",
+            "recommended": false,
+            "title": "Newsly Database",
+            "maintainers": [
+                {
+                    "name": "departy.xyz",
+                    "url": "https://github.com/martinikolaev/newsly/",
+                    "email": "na@na.com"
+                }
+            ],
+            "tags": [
+                "news",
+                "newsly",
+                "tabloids",
+                "database"
+            ],
+            "screenshots": [
+                "https://media.sys.truenas.net/apps/wg-easy/screenshots/screenshot1.png",
+                "https://media.sys.truenas.net/apps/wg-easy/screenshots/screenshot1.png"
+            ],
+            "sources": [
+                "https://github.com/WeeJeWel/wg-easy",
+                "https://github.com/truenas/charts/tree/master/charts/wg-easy"
+            ],
+            "icon_url": "https://raw.githubusercontent.com/martinikolaev/charts/master/logos/newsly.png"
+        },
+        "idractool": {
+            "app_readme": "<h1>iDrac Tools</h1>\n<p>This Python script interfaces with iDRAC through IPMI to retrieve server data, guided by environment variables prefixed with 'IDRAC_'. Each retrieved data point is then published to an MQTT broker, using the corresponding environment variable as the MQTT topic. Users must configure both iDRAC parameters and MQTT settings (including host, user, password, and topic) to enable effective data extraction and publishing.</p>",
+            "categories": [
+                "idrac",
+                "ipmi"
+            ],
+            "description": "The script fetches server data from iDRAC via IPMI based on 'IDRAC_' prefixed environment variables and publishes it to an MQTT broker using these variables as topics.",
+            "healthy": true,
+            "healthy_error": null,
+            "home": "https://github.com/martinikolaev/idrac-tool",
+            "location": "",
+            "latest_version": "1.0.3",
+            "latest_app_version": "1.1",
+            "latest_human_version": "0.2",
+            "last_update": "2023-11-11 09:32:55",
+            "name": "idractool",
+            "recommended": false,
+            "title": "iDrac Tool",
+            "maintainers": [
+                {
+                    "name": "departy.xyz",
+                    "url": "https://github.com/martinikolaev/idrac-tool/",
+                    "email": "na@na.com"
+                }
+            ],
+            "tags": [
+                "ipmi",
+                "idrac",
+                "mqtt"
+            ],
+            "screenshots": [
+                "https://media.sys.truenas.net/apps/wg-easy/screenshots/screenshot1.png",
+                "https://media.sys.truenas.net/apps/wg-easy/screenshots/screenshot1.png"
+            ],
+            "sources": [
+                "https://github.com/martinikolaev/idrac-tool/"
+            ],
+            "icon_url": "https://raw.githubusercontent.com/martinikolaev/charts/master/logos/idrac.png"
+        }
+    }
+}
