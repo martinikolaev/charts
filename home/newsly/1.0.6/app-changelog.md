@@ -1,3 +1,12 @@
+### Development
+
+## [newsly-2023.11] (2023-11-28)
+
+- Changed docker image tag: registry.departy.xyz/newsly:2023.11.28
+- Added migration strategy
+
+### Development
+
 ## [newsly-2023.11] (2023-11-20)
 
 - Added previous day link
