@@ -55,7 +55,7 @@ workload:
 service:
   newsly-admin:
     enabled: true
-    primary: true
+    primary: false
     type: NodePort
     targetSelector: newsly-admin
     ports:
