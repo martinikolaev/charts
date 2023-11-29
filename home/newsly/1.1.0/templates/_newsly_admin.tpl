@@ -1,13 +1,13 @@
 {{- define "newsly_admin.workload" -}}
 workload:
-  newsly:
+  newsly-admin:
     enabled: true
     primary: true
     type: Deployment
     podSpec:
       hostNetwork: {{ .Values.newslyAdminNetwork.hostNetwork }}
       containers:
-        newsly:
+        newsly-admin:
           enabled: true
           primary: true
           imageSelector: image
