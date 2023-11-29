@@ -17,7 +17,7 @@ workload:
             runAsUser: {{ .Values.newslyRunAs.user }}
             runAsGroup: {{ .Values.newslyRunAs.group }}
           env:
-            FLASK_APP: app.py
+            FLASK_APP: app-admin.py
             FLASK_RUN_PORT: {{ .Values.newslyAdminNetwork.webPort }}
             DBHOST : {{ .Values.newslyDatabase.host }}
             DBUSERNAME : {{ .Values.newslyDatabase.username }}
