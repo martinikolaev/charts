@@ -141,7 +141,7 @@ questions:
     type: dict
     attrs:
     - variable: webPort
-      label: Web Port
+      label: Website Port
       description: The port for the Newsly Web UI.
       schema:
         type: int
@@ -164,7 +164,7 @@ questions:
     type: dict
     attrs:
     - variable: webPort
-      label: Web Port
+      label: Admin Web Port
       description: The port for the Newsly Admin Web UI.
       schema:
         type: int
