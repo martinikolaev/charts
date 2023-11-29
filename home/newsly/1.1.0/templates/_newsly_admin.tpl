@@ -2,7 +2,7 @@
 workload:
   newsly-admin:
     enabled: true
-    primary: true
+    primary: false
     type: Deployment
     podSpec:
       hostNetwork: {{ .Values.newslyAdminNetwork.hostNetwork }}
