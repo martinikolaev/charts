@@ -53,17 +53,17 @@ workload:
 
 {{/* Service */}}
 service:
-  newsly:
+  newsly-admin:
     enabled: true
     primary: true
     type: NodePort
-    targetSelector: newsly
+    targetSelector: newsly-admin
     ports:
       webui:
         enabled: true
         primary: true
         port: {{ .Values.newslyAdminNetwork.webPort }}
         nodePort: {{ .Values.newslyAdminNetwork.webPort }}
-        targetSelector: newsly
+        targetSelector: newsly-admin
 
 {{- end -}}
