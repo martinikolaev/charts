@@ -120,6 +120,40 @@
                 "https://github.com/martinikolaev/idrac-tool/"
             ],
             "icon_url": "https://raw.githubusercontent.com/martinikolaev/charts/master/logos/idrac.png"
+        },
+        "frigate2discord": {
+            "app_readme": "<h1>Frigatge To Discord</h1>\n<p>This Python script listens for notifications from Frigate NVR and forward them to discord via Bot WebHook API.</p>",
+            "categories": [
+                "idrac",
+                "ipmi"
+            ],
+            "description": "The script fetches Frigate NVR notifications and forwards them to Discord via Bot WebHook API",
+            "healthy": true,
+            "healthy_error": null,
+            "home": "https://github.com/martinikolaev/frigate2discord",
+            "location": "",
+            "latest_version": "1.0.1",
+            "latest_app_version": "1.1",
+            "latest_human_version": "0.56",
+            "last_update": "2023-11-11 09:32:55",
+            "name": "frigate2discord",
+            "recommended": false,
+            "title": "Frigate To Discord",
+            "maintainers": [
+                {
+                    "name": "departy.xyz",
+                    "url": "https://github.com/martinikolaev/frigate2discord/",
+                    "email": "na@na.com"
+                }
+            ],
+            "tags": [
+                "frigate",
+                "discord"
+            ],
+            "sources": [
+                "https://github.com/martinikolaev/frigate2discord/"
+            ],
+            "icon_url": "https://raw.githubusercontent.com/martinikolaev/charts/master/logos/discord.png"
         }
     }
 }
