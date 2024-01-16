@@ -1,13 +1,13 @@
-{{- define "idractool.workload" -}}
+{{- define "frigate2discord.workload" -}}
 workload:
-  idractool:
+  frigate2discord:
     enabled: true
     primary: true
     type: Deployment
     podSpec:
       hostNetwork: {{ .Values.network.hostNetwork }}
       containers:
-        idractool:
+        frigate2discord:
           enabled: true
           primary: true
           imageSelector: image
@@ -19,7 +19,7 @@ workload:
             MQTT_TOPIC : {{ .Values.mqttsetup.password }}
             MQTT_USERNAME : {{ .Values.mqttsetup.username }}
             MQTT_PASSWORD : {{ .Values.mqttsetup.topic }}
-            DISCORD_WEBHOOK_URL : {{ .Values.discordsetup.host }}
+            DISCORD_WEBHOOK_URL : {{ .Values.discordsetup.webhook }}
             BASE_URL : {{ .Values.basesetup.username }}
           {{ with .Values.toolConfig.additionalEnvs }}
           envList:
@@ -56,17 +56,10 @@ workload:
 
 {{/* Service */}}
 service:
-  idractool:
+  frigate2discord:
     enabled: true
     primary: true
     type: NodePort
-    targetSelector: idractool
-    ports:
-      webui:
-        enabled: true
-        primary: true
-        port: 21945
-        nodePort: 21945
-        targetSelector: idractool
+    targetSelector: frigate2discord
 
 {{- end -}}
