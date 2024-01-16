@@ -150,8 +150,10 @@
                 "frigate",
                 "discord"
             ],
+            "screenshots": [
+            ],
             "sources": [
-                "https://github.com/martinikolaev/frigate2discord/"
+                "https://github.com/martinikolaev/idrac-tool/"
             ],
             "icon_url": "https://raw.githubusercontent.com/martinikolaev/charts/master/logos/discord.png"
         }
