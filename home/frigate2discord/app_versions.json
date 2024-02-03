@@ -156,6 +156,26 @@
           }
         },
         {
+          "variable": "frigatesetup",
+          "label": "Configure Frigate channel",
+          "group": "Frigate Configuration",
+          "schema": {
+            "type": "dict",
+            "attrs": [
+              {
+                "variable": "apiurl",
+                "label": "API URL",
+                "description": "Frigate API URL",
+                "schema": {
+                  "type": "string",
+                  "required": true,
+                  "default": "https://frigate-ip/api/events\""
+                }
+              }
+            ]
+          }
+        },
+        {
           "variable": "mqttsetup",
           "label": "Configure MQTT values",
           "group": "MQTT Configuration",
@@ -197,7 +217,8 @@
                 "description": "MQTT Topic to which will be published",
                 "schema": {
                   "type": "string",
-                  "required": true
+                  "required": true,
+                  "default": "frigate/events"
                 }
               }
             ]
