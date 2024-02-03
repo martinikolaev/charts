@@ -1,5 +1,5 @@
 image:
-  repository: registry.departy.xyz/frigate2discord
+  repository: registry.departy.xyz/frigate_to_discord
   pullPolicy: IfNotPresent
   tag: '2024.1'
 
