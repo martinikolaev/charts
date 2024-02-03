@@ -3,7 +3,7 @@
     "healthy": true,
     "supported": true,
     "healthy_error": null,
-    "location": "/__w/charts/charts/community/bazarr/1.2.8",
+    "location": "/__w/home/frigate2discord/1.2.8",
     "last_update": "2024-02-03 10:49:45",
     "required_features": ["normalize/acl", "normalize/ixVolume"],
     "human_version": "1.4.0_1.2.8",
