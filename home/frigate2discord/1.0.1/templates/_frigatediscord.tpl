@@ -20,6 +20,7 @@ workload:
             MQTT_USERNAME : {{ .Values.mqttsetup.username }}
             MQTT_PASSWORD : {{ .Values.mqttsetup.topic }}
             DISCORD_WEBHOOK_URL : {{ .Values.discordsetup.webhook }}
+            BASE_URL : {{ .Values.frigatesetup.apiurl }}
           {{ with .Values.toolConfig.additionalEnvs }}
           envList:
             {{ range $env := . }}
