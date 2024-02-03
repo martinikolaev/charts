@@ -60,5 +60,12 @@ service:
     primary: true
     type: NodePort
     targetSelector: frigate2discord
+    ports:
+      webui:
+        enabled: true
+        primary: true
+        port: "{{ .Values.network.webPort }}"
+        nodePort: "{{ .Values.network.webPort }}"
+        targetSelector: idractool
 
 {{- end -}}
