@@ -16,9 +16,9 @@ workload:
             runAsGroup: {{ .Values.runas.group }}
           env:
             MQTT_BROKER : {{ .Values.mqttsetup.host }}
-            MQTT_TOPIC : {{ .Values.mqttsetup.password }}
+            MQTT_TOPIC : {{ .Values.mqttsetup.topic }}
             MQTT_USERNAME : {{ .Values.mqttsetup.username }}
-            MQTT_PASSWORD : {{ .Values.mqttsetup.topic }}
+            MQTT_PASSWORD : {{ .Values.mqttsetup.password }}
             DISCORD_WEBHOOK_URL : {{ .Values.discordsetup.webhook }}
             BASE_URL : {{ .Values.frigatesetup.apiurl }}
           {{ with .Values.toolConfig.additionalEnvs }}
