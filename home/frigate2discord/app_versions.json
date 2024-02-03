@@ -62,6 +62,10 @@
           "description": "Configure MQTT values"
         },
         {
+          "name": "Frigate Configuration",
+          "description": "Configure Frigate values"
+        },
+        {
           "name": "User and Group Configuration",
           "description": "Configure User and Group for Frigate2Discord"
         },
