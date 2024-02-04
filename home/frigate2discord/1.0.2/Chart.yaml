@@ -3,9 +3,9 @@ description: Retrieve MQTT values and send them over Discord channel via bot api
 annotations:
   title: Frigate2Discord
 type: application
-version: 1.0.1
+version: 1.0.2
 apiVersion: v2
-appVersion: '1.0'
+appVersion: '1.0.2'
 kubeVersion: '>=1.16.0-0'
 maintainers:
   - name: homechart
