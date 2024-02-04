@@ -3,7 +3,6 @@
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "location": "/__w/home/idractool/1.0.3",
         "last_update": "2024-02-03 10:49:45",
         "required_features": [
             "normalize/acl",
@@ -280,6 +279,41 @@
                 }
             ]
         },
-        "app_metadata": {}
+        "app_metadata": {
+            "runAsContext": [
+                {
+                    "userName": "abc",
+                    "groupName": "abc",
+                    "gid": "{{ .Values.runas.group }}",
+                    "uid": "{{ .Values.runas.user }}",
+                    "description": "iDracTool sensor extractor"
+                }
+            ],
+            "capabilities": [],
+            "hostMounts": []
+        },
+        "chart_metadata": {
+            "name": "idractool",
+            "description": "The script fetches server data from iDRAC via IPMI based on 'IDRAC_' prefixed environment variables and publishes it to an MQTT broker using these variables as topics.",
+            "annotations": {
+                "title": "idractool"
+            },
+            "type": "application",
+            "version": "1.0.3",
+            "appVersion": "1.0.3",
+            "kubeVersion": ">=1.16.0-0",
+            "maintainers": [
+                {
+                    "name": "departy.xyz",
+                    "url": "https://github.com/martinikolaev/idrac-tool/",
+                    "email": "na@na.com"
+                }
+            ],
+            "home": "https://github.com/martinikolaev/idrac-tool",
+            "icon": "https://raw.githubusercontent.com/martinikolaev/charts/master/logos/idrac.png",
+            "sources": [
+                "https://github.com/martinikolaev/idrac-tool/"
+            ]
+        }
     }
 }

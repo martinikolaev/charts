@@ -1,10 +1,10 @@
 import json
-import yaml  # Ensure PyYAML is installed (pip install pyyaml)
+import yaml  # PyYAML library
 from datetime import datetime
 import os
 
-def read_catalogue(filename='catalog.json'):
-    """Reads the catalogue file and returns its content as a dictionary."""
+def read_catalog(filename='catalog.json'):
+    """Reads the catalog file and returns its content as a dictionary."""
     with open(filename, 'r') as file:
         return json.load(file)
 
@@ -24,10 +24,11 @@ def read_yaml_file(app_name, version, filename):
 
 def generate_app_versions_data(app_data, questions_data, metadata_data):
     """
-    Takes the application data extracted from the catalogue, the questions data, and the metadata data,
-    and generates the structure for app_versions.json with dynamic and static values.
+    Takes the application data extracted from the catalog, the questions data, and the metadata data,
+    and generates the structure for app_versions.json with dynamic and static values for specified fields.
     """
     latest_version = app_data['latest_version']
+    
     app_versions_data = {
         latest_version: {
             "healthy": True,
@@ -45,7 +46,21 @@ def generate_app_versions_data(app_data, questions_data, metadata_data):
                 "questions": questions_data.get('questions', [])
             },
             "app_metadata": metadata_data,
-            # Add other dynamic fields from app_data if needed
+            "chart_metadata": {
+                "name": app_data.get("name", ""),
+                "description": app_data.get("description", ""),
+                "annotations": {
+                    "title": app_data.get("name", "")  # Assuming title comes from the name field
+                },
+                "type": "application",
+                "version": latest_version,
+                "appVersion": latest_version,
+                "kubeVersion": ">=1.16.0-0",
+                "maintainers": app_data.get("maintainers", []),
+                "home": app_data.get("home", ""),
+                "icon": app_data.get("icon_url", ""),
+                "sources": app_data.get("sources", [])
+            }
         }
     }
     return app_versions_data
@@ -56,10 +71,10 @@ def write_app_versions(app_versions_data, filename='app_versions.json'):
         json.dump(app_versions_data, file, indent=4)
 
 def main():
-    catalogue = read_catalogue()  # Reads the catalogue.json file
+    catalog = read_catalog()  # Reads the catalog.json file
     app_name = 'idractool'  # Specify the app you're interested in
-    if app_name in catalogue['home']:
-        app_data = catalogue['home'][app_name]
+    if app_name in catalog['home']:
+        app_data = catalog['home'][app_name]
         version = app_data['latest_version']  # Use latest_version to read corresponding YAML files
         questions_data = read_yaml_file(app_name, version, 'questions.yaml')
         metadata_data = read_yaml_file(app_name, version, 'metadata.yaml')
@@ -67,7 +82,7 @@ def main():
         write_app_versions(app_versions_data)
         print(f"Data for {app_name} has been successfully written to app_versions.json")
     else:
-        print(f"App {app_name} not found in catalogue.")
+        print(f"App {app_name} not found in catalog.")
 
 if __name__ == "__main__":
     main()
