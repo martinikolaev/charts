@@ -31,15 +31,13 @@ def generate_app_versions_data(app_data, questions_data, metadata_data):
     # Dynamically construct the 'location' field
     location = f"/__w/home/{app_name}/{latest_version}"
     
-    # Ensuring gid and uid are statically set to 568 in app_metadata.runAsContext
-    if "runAsContext" not in metadata_data:
-        metadata_data["runAsContext"] = []
-        
-    metadata_data["runAsContext"].append({
-        "gid": 568,
-        "uid": 568,
-        "description": "Static GID and UID for runAsContext"
-    })
+    # Adjust runAsContext in metadata_data to ensure gid and uid are always 568
+    adjusted_runAsContext = []
+    for context in metadata_data.get("runAsContext", []):
+        context["gid"] = 568
+        context["uid"] = 568
+        adjusted_runAsContext.append(context)
+    metadata_data["runAsContext"] = adjusted_runAsContext
 
     app_versions_data = {
         latest_version: {
