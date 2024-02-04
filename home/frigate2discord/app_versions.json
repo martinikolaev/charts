@@ -1,550 +1,4 @@
 {
-  "1.0.1": {
-    "healthy": true,
-    "supported": true,
-    "healthy_error": null,
-    "location": "/__w/home/frigate2discord/1.2.8",
-    "last_update": "2024-02-03 10:49:45",
-    "required_features": ["normalize/acl", "normalize/ixVolume"],
-    "human_version": "1.0.1",
-    "version": "1.0.1",
-    "chart_metadata": {
-      "name": "Frigate2Ddiscord",
-      "description": "Frigate2Ddiscord is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements.",
-      "annotations": {
-        "title": "Frigate2Ddiscord"
-      },
-      "type": "application",
-      "version": "1.0.1",
-      "appVersion": "1.0.1",
-      "kubeVersion": ">=1.16.0-0",
-      "maintainers": [
-        {
-          "name": "departy.xyz",
-          "url": "https://github.com/martinikolaev/frigate2discord/",
-          "email": "na@na.com"
-        }
-      ],
-      "home": "https://github.com/martinikolaev/frigate2discord",
-      "icon": "https://media.sys.truenas.net/apps/bazarr/icons/icon.png",
-      "sources": [
-        "https://github.com/onedr0p/containers/tree/main/apps/bazarr",
-        "https://github.com/truenas/charts/tree/master/library/ix-dev/community/bazarr",
-        "https://github.com/morpheus65535/bazarr"
-      ],
-      "keywords": ["media", "subtitles"]
-    },
-    "app_metadata": {
-      "runAsContext": [
-        {
-          "userName": "abc",
-          "groupName": "abc",
-          "gid": 568,
-          "uid": 568,
-          "description": "Frigate2Discord notification forwarder"
-        }
-      ],
-      "capabilities": [],
-      "hostMounts": []
-    },
-    "schema": {
-      "groups": [
-        {
-          "name": "Tool Configuration",
-          "description": "Configure the scraping tool"
-        },
-        {
-          "name": "Discord Configuration",
-          "description": "Configure Discord channel"
-        },
-        {
-          "name": "MQTT Configuration",
-          "description": "Configure MQTT values"
-        },
-        {
-          "name": "Frigate Configuration",
-          "description": "Configure Frigate values"
-        },
-        {
-          "name": "User and Group Configuration",
-          "description": "Configure User and Group for Frigate2Discord"
-        },
-        {
-          "name": "Network Configuration",
-          "description": "Configure Network for Frigate2Discord"
-        },
-        {
-          "name": "Storage Configuration",
-          "description": "Configure Storage for Frigate2Discord"
-        },
-        {
-          "name": "Resources Configuration",
-          "description": "Configure Resources for Frigate2Discord"
-        }
-      ],
-      "portals": {},
-      "questions": [
-        {
-          "variable": "toolConfig",
-          "label": "",
-          "group": "Tool Configuration",
-          "schema": {
-            "type": "dict",
-            "attrs": [
-              {
-                "variable": "pythonlogging",
-                "label": "Python Logging",
-                "description": "This will make so the python logs considered as usual logs",
-                "schema": {
-                  "type": "string",
-                  "default": "1",
-                  "required": true
-                }
-              },
-              {
-                "variable": "additionalEnvs",
-                "label": "Additional Environment Variables",
-                "description": "Configure additional environment variables for Newsly.",
-                "schema": {
-                  "type": "list",
-                  "default": [],
-                  "items": [
-                    {
-                      "variable": "env",
-                      "label": "Environment Variable",
-                      "schema": {
-                        "type": "dict",
-                        "attrs": [
-                          {
-                            "variable": "name",
-                            "label": "Name",
-                            "schema": {
-                              "type": "string",
-                              "required": true
-                            }
-                          },
-                          {
-                            "variable": "value",
-                            "label": "Value",
-                            "schema": {
-                              "type": "string",
-                              "required": true
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        },
-        {
-          "variable": "discordsetup",
-          "label": "Configure Discord channel",
-          "group": "Discord Configuration",
-          "schema": {
-            "type": "dict",
-            "attrs": [
-              {
-                "variable": "webhook",
-                "label": "Channel Web Hook",
-                "description": "Discord channel webhook to which the notifications will be sent",
-                "schema": {
-                  "type": "string",
-                  "required": true
-                }
-              }
-            ]
-          }
-        },
-        {
-          "variable": "frigatesetup",
-          "label": "Configure Frigate channel",
-          "group": "Frigate Configuration",
-          "schema": {
-            "type": "dict",
-            "attrs": [
-              {
-                "variable": "apiurl",
-                "label": "API URL",
-                "description": "Frigate API URL",
-                "schema": {
-                  "type": "string",
-                  "required": true,
-                  "default": "https://frigate-ip/api/events\""
-                }
-              }
-            ]
-          }
-        },
-        {
-          "variable": "mqttsetup",
-          "label": "Configure MQTT values",
-          "group": "MQTT Configuration",
-          "schema": {
-            "type": "dict",
-            "attrs": [
-              {
-                "variable": "host",
-                "label": "MQTT Host",
-                "description": "Hostname or IP address of the MQTT server.",
-                "schema": {
-                  "type": "string",
-                  "default": "10.2.20.25",
-                  "required": true
-                }
-              },
-              {
-                "variable": "username",
-                "label": "MQTT Username",
-                "description": "Username that will be used to communicate with MQTT",
-                "schema": {
-                  "type": "string",
-                  "required": true
-                }
-              },
-              {
-                "variable": "password",
-                "label": "MQTT Password",
-                "description": "Password for the user that will be used to communicate with MQTT.",
-                "schema": {
-                  "type": "string",
-                  "required": true,
-                  "private": true
-                }
-              },
-              {
-                "variable": "topic",
-                "label": "MQTT Topic",
-                "description": "MQTT Topic to which will be published",
-                "schema": {
-                  "type": "string",
-                  "required": true,
-                  "default": "frigate/events"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "variable": "runas",
-          "label": "",
-          "group": "User and Group Configuration",
-          "schema": {
-            "type": "dict",
-            "attrs": [
-              {
-                "variable": "user",
-                "label": "User ID",
-                "description": "The user id that Newsly will run as.",
-                "schema": {
-                  "type": "int",
-                  "min": 2,
-                  "default": 568,
-                  "required": true
-                }
-              },
-              {
-                "variable": "group",
-                "label": "Group ID",
-                "description": "The group id that Newsly will run as.",
-                "schema": {
-                  "type": "int",
-                  "min": 2,
-                  "default": 568,
-                  "required": true
-                }
-              }
-            ]
-          }
-        },
-        {
-          "variable": "network",
-          "label": "",
-          "group": "Network Configuration",
-          "schema": {
-            "type": "dict",
-            "attrs": [
-              {
-                "variable": "webPort",
-                "label": "Web Port",
-                "description": "The port for the Newsly Web UI.",
-                "schema": {
-                  "type": "int",
-                  "default": 30027,
-                  "min": 9000,
-                  "max": 65535,
-                  "required": true
-                }
-              },
-              {
-                "variable": "hostNetwork",
-                "label": "Host Network",
-                "description": "Bind to the host network. It's recommended to keep this disabled.</br>\n",
-                "schema": {
-                  "type": "boolean",
-                  "default": false
-                }
-              }
-            ]
-          }
-        },
-        {
-          "variable": "storage",
-          "label": "",
-          "group": "Storage Configuration",
-          "schema": {
-            "type": "dict",
-            "attrs": [
-              {
-                "variable": "config",
-                "label": "Newsly Config Storage",
-                "description": "The path to store Newsly Configuration.",
-                "schema": {
-                  "type": "dict",
-                  "attrs": [
-                    {
-                      "variable": "type",
-                      "label": "Type",
-                      "description": "ixVolume: Is dataset created automatically by the system.</br>\nHost Path: Is a path that already exists on the system.\n",
-                      "schema": {
-                        "type": "string",
-                        "required": true,
-                        "immutable": true,
-                        "default": "ixVolume",
-                        "enum": [
-                          {
-                            "value": "hostPath",
-                            "description": "Host Path (Path that already exists on the system)"
-                          },
-                          {
-                            "value": "ixVolume",
-                            "description": "ixVolume (Dataset created automatically by the system)"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "variable": "datasetName",
-                      "label": "Dataset Name",
-                      "schema": {
-                        "type": "string",
-                        "show_if": [["type", "=", "ixVolume"]],
-                        "required": true,
-                        "hidden": true,
-                        "immutable": true,
-                        "default": "config",
-                        "$ref": ["normalize/ixVolume"]
-                      }
-                    },
-                    {
-                      "variable": "hostPath",
-                      "label": "Host Path",
-                      "schema": {
-                        "type": "hostpath",
-                        "show_if": [["type", "=", "hostPath"]],
-                        "immutable": true,
-                        "required": true
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "variable": "additionalStorages",
-                "label": "Additional Storage",
-                "description": "Additional storage for Newsly.",
-                "schema": {
-                  "type": "list",
-                  "default": [],
-                  "items": [
-                    {
-                      "variable": "storageEntry",
-                      "label": "Storage Entry",
-                      "schema": {
-                        "type": "dict",
-                        "attrs": [
-                          {
-                            "variable": "type",
-                            "label": "Type",
-                            "description": "ixVolume: Is dataset created automatically by the system.</br>\nHost Path: Is a path that already exists on the system.</br>\nSMB Share: Is a SMB share that is mounted to a persistent volume claim.\n",
-                            "schema": {
-                              "type": "string",
-                              "required": true,
-                              "default": "ixVolume",
-                              "immutable": true,
-                              "enum": [
-                                {
-                                  "value": "hostPath",
-                                  "description": "Host Path (Path that already exists on the system)"
-                                },
-                                {
-                                  "value": "ixVolume",
-                                  "description": "ixVolume (Dataset created automatically by the system)"
-                                },
-                                {
-                                  "value": "smb-pv-pvc",
-                                  "description": "SMB Share (Mounts a persistent volume claim to a SMB share)"
-                                }
-                              ]
-                            }
-                          },
-                          {
-                            "variable": "mountPath",
-                            "label": "Mount Path",
-                            "description": "The path inside the container to mount the storage.",
-                            "schema": {
-                              "type": "path",
-                              "required": true
-                            }
-                          },
-                          {
-                            "variable": "hostPath",
-                            "label": "Host Path",
-                            "description": "The host path to use for storage.",
-                            "schema": {
-                              "type": "hostpath",
-                              "show_if": [["type", "=", "hostPath"]],
-                              "required": true
-                            }
-                          },
-                          {
-                            "variable": "datasetName",
-                            "label": "Dataset Name",
-                            "description": "The name of the dataset to use for storage.",
-                            "schema": {
-                              "type": "string",
-                              "show_if": [["type", "=", "ixVolume"]],
-                              "required": true,
-                              "immutable": true,
-                              "default": "storage_entry",
-                              "$ref": ["normalize/ixVolume"]
-                            }
-                          },
-                          {
-                            "variable": "server",
-                            "label": "Server",
-                            "description": "The server for the SMB share.",
-                            "schema": {
-                              "type": "string",
-                              "show_if": [["type", "=", "smb-pv-pvc"]],
-                              "required": true
-                            }
-                          },
-                          {
-                            "variable": "share",
-                            "label": "Share",
-                            "description": "The share name for the SMB share.",
-                            "schema": {
-                              "type": "string",
-                              "show_if": [["type", "=", "smb-pv-pvc"]],
-                              "required": true
-                            }
-                          },
-                          {
-                            "variable": "domain",
-                            "label": "Domain (Optional)",
-                            "description": "The domain for the SMB share.",
-                            "schema": {
-                              "type": "string",
-                              "show_if": [["type", "=", "smb-pv-pvc"]]
-                            }
-                          },
-                          {
-                            "variable": "username",
-                            "label": "Username",
-                            "description": "The username for the SMB share.",
-                            "schema": {
-                              "type": "string",
-                              "show_if": [["type", "=", "smb-pv-pvc"]],
-                              "required": true
-                            }
-                          },
-                          {
-                            "variable": "password",
-                            "label": "Password",
-                            "description": "The password for the SMB share.",
-                            "schema": {
-                              "type": "string",
-                              "show_if": [["type", "=", "smb-pv-pvc"]],
-                              "required": true,
-                              "private": true
-                            }
-                          },
-                          {
-                            "variable": "size",
-                            "label": "Size (in Gi)",
-                            "description": "The size of the volume quota.",
-                            "schema": {
-                              "type": "int",
-                              "show_if": [["type", "=", "smb-pv-pvc"]],
-                              "required": true,
-                              "min": 1,
-                              "default": 1
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        },
-        {
-          "variable": "resources",
-          "group": "Resources Configuration",
-          "label": "",
-          "schema": {
-            "type": "dict",
-            "attrs": [
-              {
-                "variable": "limits",
-                "label": "Limits",
-                "schema": {
-                  "type": "dict",
-                  "attrs": [
-                    {
-                      "variable": "cpu",
-                      "label": "CPU",
-                      "description": "CPU limit for Newsly.",
-                      "schema": {
-                        "type": "string",
-                        "max_length": 6,
-                        "valid_chars": "^(0\\.[1-9]|[1-9][0-9]*)(\\.[0-9]|m?)$",
-                        "valid_chars_error": "Valid CPU limit formats are</br>\n- Plain Integer - eg. 1</br>\n- Float - eg. 0.5</br>\n- Milicpu - eg. 500m\n",
-                        "default": "4000m",
-                        "required": true
-                      }
-                    },
-                    {
-                      "variable": "memory",
-                      "label": "Memory",
-                      "description": "Memory limit for Newsly.",
-                      "schema": {
-                        "type": "string",
-                        "max_length": 12,
-                        "valid_chars": "^[1-9][0-9]*([EPTGMK]i?|e[0-9]+)?$",
-                        "valid_chars_error": "Valid Memory limit formats are</br>\n- Suffixed with E/P/T/G/M/K - eg. 1G</br>\n- Suffixed with Ei/Pi/Ti/Gi/Mi/Ki - eg. 1Gi</br>\n- Plain Integer in bytes - eg. 1024</br>\n- Exponent - eg. 134e6\n",
-                        "default": "8Gi",
-                        "required": true
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        }
-      ]
-    },
-    "app_readme": "<h1>Bazarr</h1>\n<p><a href=\"https://www.bazarr.media/\">Bazarr</a> is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements.</p>\n<blockquote>\n<p>When application is installed, a container will be launched with <strong>root</strong> privileges.\nThis is required in order to apply the correct permissions to the <code>Bazarr</code> directories.\nAfterward, the <code>Bazarr</code> container will run as a <strong>non</strong>-root user (Default: <code>568</code>).\nAll mounted storage(s) will be <code>chown</code>ed only if the parent directory does not match the configured user.</p>\n</blockquote>",
-    "detailed_readme": "<h1>Bazarr</h1>\n<p><a href=\"https://www.bazarr.media/\">Bazarr</a> is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements.</p>\n<blockquote>\n<p>When application is installed, a container will be launched with <strong>root</strong> privileges.\nThis is required in order to apply the correct permissions to the <code>Bazarr</code> directories.\nAfterward, the <code>Bazarr</code> container will run as a <strong>non</strong>-root user (Default: <code>568</code>).\nAll mounted storage(s) will be <code>chown</code>ed only if the parent directory does not match the configured user.</p>\n</blockquote>",
-    "changelog": null
-  },
   "1.0.2": {
     "healthy": true,
     "supported": true,
@@ -1090,5 +544,552 @@
     "app_readme": "<h1>Bazarr</h1>\n<p><a href=\"https://www.bazarr.media/\">Bazarr</a> is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements.</p>\n<blockquote>\n<p>When application is installed, a container will be launched with <strong>root</strong> privileges.\nThis is required in order to apply the correct permissions to the <code>Bazarr</code> directories.\nAfterward, the <code>Bazarr</code> container will run as a <strong>non</strong>-root user (Default: <code>568</code>).\nAll mounted storage(s) will be <code>chown</code>ed only if the parent directory does not match the configured user.</p>\n</blockquote>",
     "detailed_readme": "<h1>Bazarr</h1>\n<p><a href=\"https://www.bazarr.media/\">Bazarr</a> is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements.</p>\n<blockquote>\n<p>When application is installed, a container will be launched with <strong>root</strong> privileges.\nThis is required in order to apply the correct permissions to the <code>Bazarr</code> directories.\nAfterward, the <code>Bazarr</code> container will run as a <strong>non</strong>-root user (Default: <code>568</code>).\nAll mounted storage(s) will be <code>chown</code>ed only if the parent directory does not match the configured user.</p>\n</blockquote>",
     "changelog": null
+  },
+  "1.0.1": {
+    "healthy": true,
+    "supported": true,
+    "healthy_error": null,
+    "location": "/__w/home/frigate2discord/1.2.8",
+    "last_update": "2024-02-03 10:49:45",
+    "required_features": ["normalize/acl", "normalize/ixVolume"],
+    "human_version": "1.0.1",
+    "version": "1.0.1",
+    "chart_metadata": {
+      "name": "Frigate2Ddiscord",
+      "description": "Frigate2Ddiscord is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements.",
+      "annotations": {
+        "title": "Frigate2Ddiscord"
+      },
+      "type": "application",
+      "version": "1.0.1",
+      "appVersion": "1.0.1",
+      "kubeVersion": ">=1.16.0-0",
+      "maintainers": [
+        {
+          "name": "departy.xyz",
+          "url": "https://github.com/martinikolaev/frigate2discord/",
+          "email": "na@na.com"
+        }
+      ],
+      "home": "https://github.com/martinikolaev/frigate2discord",
+      "icon": "https://media.sys.truenas.net/apps/bazarr/icons/icon.png",
+      "sources": [
+        "https://github.com/onedr0p/containers/tree/main/apps/bazarr",
+        "https://github.com/truenas/charts/tree/master/library/ix-dev/community/bazarr",
+        "https://github.com/morpheus65535/bazarr"
+      ],
+      "keywords": ["media", "subtitles"]
+    },
+    "app_metadata": {
+      "runAsContext": [
+        {
+          "userName": "abc",
+          "groupName": "abc",
+          "gid": 568,
+          "uid": 568,
+          "description": "Frigate2Discord notification forwarder"
+        }
+      ],
+      "capabilities": [],
+      "hostMounts": []
+    },
+    "schema": {
+      "groups": [
+        {
+          "name": "Tool Configuration",
+          "description": "Configure the scraping tool"
+        },
+        {
+          "name": "Discord Configuration",
+          "description": "Configure Discord channel"
+        },
+        {
+          "name": "MQTT Configuration",
+          "description": "Configure MQTT values"
+        },
+        {
+          "name": "Frigate Configuration",
+          "description": "Configure Frigate values"
+        },
+        {
+          "name": "User and Group Configuration",
+          "description": "Configure User and Group for Frigate2Discord"
+        },
+        {
+          "name": "Network Configuration",
+          "description": "Configure Network for Frigate2Discord"
+        },
+        {
+          "name": "Storage Configuration",
+          "description": "Configure Storage for Frigate2Discord"
+        },
+        {
+          "name": "Resources Configuration",
+          "description": "Configure Resources for Frigate2Discord"
+        }
+      ],
+      "portals": {},
+      "questions": [
+        {
+          "variable": "toolConfig",
+          "label": "",
+          "group": "Tool Configuration",
+          "schema": {
+            "type": "dict",
+            "attrs": [
+              {
+                "variable": "pythonlogging",
+                "label": "Python Logging",
+                "description": "This will make so the python logs considered as usual logs",
+                "schema": {
+                  "type": "string",
+                  "default": "1",
+                  "required": true
+                }
+              },
+              {
+                "variable": "additionalEnvs",
+                "label": "Additional Environment Variables",
+                "description": "Configure additional environment variables for Newsly.",
+                "schema": {
+                  "type": "list",
+                  "default": [],
+                  "items": [
+                    {
+                      "variable": "env",
+                      "label": "Environment Variable",
+                      "schema": {
+                        "type": "dict",
+                        "attrs": [
+                          {
+                            "variable": "name",
+                            "label": "Name",
+                            "schema": {
+                              "type": "string",
+                              "required": true
+                            }
+                          },
+                          {
+                            "variable": "value",
+                            "label": "Value",
+                            "schema": {
+                              "type": "string",
+                              "required": true
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "variable": "discordsetup",
+          "label": "Configure Discord channel",
+          "group": "Discord Configuration",
+          "schema": {
+            "type": "dict",
+            "attrs": [
+              {
+                "variable": "webhook",
+                "label": "Channel Web Hook",
+                "description": "Discord channel webhook to which the notifications will be sent",
+                "schema": {
+                  "type": "string",
+                  "required": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "variable": "frigatesetup",
+          "label": "Configure Frigate channel",
+          "group": "Frigate Configuration",
+          "schema": {
+            "type": "dict",
+            "attrs": [
+              {
+                "variable": "apiurl",
+                "label": "API URL",
+                "description": "Frigate API URL",
+                "schema": {
+                  "type": "string",
+                  "required": true,
+                  "default": "https://frigate-ip/api/events\""
+                }
+              }
+            ]
+          }
+        },
+        {
+          "variable": "mqttsetup",
+          "label": "Configure MQTT values",
+          "group": "MQTT Configuration",
+          "schema": {
+            "type": "dict",
+            "attrs": [
+              {
+                "variable": "host",
+                "label": "MQTT Host",
+                "description": "Hostname or IP address of the MQTT server.",
+                "schema": {
+                  "type": "string",
+                  "default": "10.2.20.25",
+                  "required": true
+                }
+              },
+              {
+                "variable": "username",
+                "label": "MQTT Username",
+                "description": "Username that will be used to communicate with MQTT",
+                "schema": {
+                  "type": "string",
+                  "required": true
+                }
+              },
+              {
+                "variable": "password",
+                "label": "MQTT Password",
+                "description": "Password for the user that will be used to communicate with MQTT.",
+                "schema": {
+                  "type": "string",
+                  "required": true,
+                  "private": true
+                }
+              },
+              {
+                "variable": "topic",
+                "label": "MQTT Topic",
+                "description": "MQTT Topic to which will be published",
+                "schema": {
+                  "type": "string",
+                  "required": true,
+                  "default": "frigate/events"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "variable": "runas",
+          "label": "",
+          "group": "User and Group Configuration",
+          "schema": {
+            "type": "dict",
+            "attrs": [
+              {
+                "variable": "user",
+                "label": "User ID",
+                "description": "The user id that Newsly will run as.",
+                "schema": {
+                  "type": "int",
+                  "min": 2,
+                  "default": 568,
+                  "required": true
+                }
+              },
+              {
+                "variable": "group",
+                "label": "Group ID",
+                "description": "The group id that Newsly will run as.",
+                "schema": {
+                  "type": "int",
+                  "min": 2,
+                  "default": 568,
+                  "required": true
+                }
+              }
+            ]
+          }
+        },
+        {
+          "variable": "network",
+          "label": "",
+          "group": "Network Configuration",
+          "schema": {
+            "type": "dict",
+            "attrs": [
+              {
+                "variable": "webPort",
+                "label": "Web Port",
+                "description": "The port for the Newsly Web UI.",
+                "schema": {
+                  "type": "int",
+                  "default": 30027,
+                  "min": 9000,
+                  "max": 65535,
+                  "required": true
+                }
+              },
+              {
+                "variable": "hostNetwork",
+                "label": "Host Network",
+                "description": "Bind to the host network. It's recommended to keep this disabled.</br>\n",
+                "schema": {
+                  "type": "boolean",
+                  "default": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "variable": "storage",
+          "label": "",
+          "group": "Storage Configuration",
+          "schema": {
+            "type": "dict",
+            "attrs": [
+              {
+                "variable": "config",
+                "label": "Newsly Config Storage",
+                "description": "The path to store Newsly Configuration.",
+                "schema": {
+                  "type": "dict",
+                  "attrs": [
+                    {
+                      "variable": "type",
+                      "label": "Type",
+                      "description": "ixVolume: Is dataset created automatically by the system.</br>\nHost Path: Is a path that already exists on the system.\n",
+                      "schema": {
+                        "type": "string",
+                        "required": true,
+                        "immutable": true,
+                        "default": "ixVolume",
+                        "enum": [
+                          {
+                            "value": "hostPath",
+                            "description": "Host Path (Path that already exists on the system)"
+                          },
+                          {
+                            "value": "ixVolume",
+                            "description": "ixVolume (Dataset created automatically by the system)"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "variable": "datasetName",
+                      "label": "Dataset Name",
+                      "schema": {
+                        "type": "string",
+                        "show_if": [["type", "=", "ixVolume"]],
+                        "required": true,
+                        "hidden": true,
+                        "immutable": true,
+                        "default": "config",
+                        "$ref": ["normalize/ixVolume"]
+                      }
+                    },
+                    {
+                      "variable": "hostPath",
+                      "label": "Host Path",
+                      "schema": {
+                        "type": "hostpath",
+                        "show_if": [["type", "=", "hostPath"]],
+                        "immutable": true,
+                        "required": true
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "variable": "additionalStorages",
+                "label": "Additional Storage",
+                "description": "Additional storage for Newsly.",
+                "schema": {
+                  "type": "list",
+                  "default": [],
+                  "items": [
+                    {
+                      "variable": "storageEntry",
+                      "label": "Storage Entry",
+                      "schema": {
+                        "type": "dict",
+                        "attrs": [
+                          {
+                            "variable": "type",
+                            "label": "Type",
+                            "description": "ixVolume: Is dataset created automatically by the system.</br>\nHost Path: Is a path that already exists on the system.</br>\nSMB Share: Is a SMB share that is mounted to a persistent volume claim.\n",
+                            "schema": {
+                              "type": "string",
+                              "required": true,
+                              "default": "ixVolume",
+                              "immutable": true,
+                              "enum": [
+                                {
+                                  "value": "hostPath",
+                                  "description": "Host Path (Path that already exists on the system)"
+                                },
+                                {
+                                  "value": "ixVolume",
+                                  "description": "ixVolume (Dataset created automatically by the system)"
+                                },
+                                {
+                                  "value": "smb-pv-pvc",
+                                  "description": "SMB Share (Mounts a persistent volume claim to a SMB share)"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "variable": "mountPath",
+                            "label": "Mount Path",
+                            "description": "The path inside the container to mount the storage.",
+                            "schema": {
+                              "type": "path",
+                              "required": true
+                            }
+                          },
+                          {
+                            "variable": "hostPath",
+                            "label": "Host Path",
+                            "description": "The host path to use for storage.",
+                            "schema": {
+                              "type": "hostpath",
+                              "show_if": [["type", "=", "hostPath"]],
+                              "required": true
+                            }
+                          },
+                          {
+                            "variable": "datasetName",
+                            "label": "Dataset Name",
+                            "description": "The name of the dataset to use for storage.",
+                            "schema": {
+                              "type": "string",
+                              "show_if": [["type", "=", "ixVolume"]],
+                              "required": true,
+                              "immutable": true,
+                              "default": "storage_entry",
+                              "$ref": ["normalize/ixVolume"]
+                            }
+                          },
+                          {
+                            "variable": "server",
+                            "label": "Server",
+                            "description": "The server for the SMB share.",
+                            "schema": {
+                              "type": "string",
+                              "show_if": [["type", "=", "smb-pv-pvc"]],
+                              "required": true
+                            }
+                          },
+                          {
+                            "variable": "share",
+                            "label": "Share",
+                            "description": "The share name for the SMB share.",
+                            "schema": {
+                              "type": "string",
+                              "show_if": [["type", "=", "smb-pv-pvc"]],
+                              "required": true
+                            }
+                          },
+                          {
+                            "variable": "domain",
+                            "label": "Domain (Optional)",
+                            "description": "The domain for the SMB share.",
+                            "schema": {
+                              "type": "string",
+                              "show_if": [["type", "=", "smb-pv-pvc"]]
+                            }
+                          },
+                          {
+                            "variable": "username",
+                            "label": "Username",
+                            "description": "The username for the SMB share.",
+                            "schema": {
+                              "type": "string",
+                              "show_if": [["type", "=", "smb-pv-pvc"]],
+                              "required": true
+                            }
+                          },
+                          {
+                            "variable": "password",
+                            "label": "Password",
+                            "description": "The password for the SMB share.",
+                            "schema": {
+                              "type": "string",
+                              "show_if": [["type", "=", "smb-pv-pvc"]],
+                              "required": true,
+                              "private": true
+                            }
+                          },
+                          {
+                            "variable": "size",
+                            "label": "Size (in Gi)",
+                            "description": "The size of the volume quota.",
+                            "schema": {
+                              "type": "int",
+                              "show_if": [["type", "=", "smb-pv-pvc"]],
+                              "required": true,
+                              "min": 1,
+                              "default": 1
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "variable": "resources",
+          "group": "Resources Configuration",
+          "label": "",
+          "schema": {
+            "type": "dict",
+            "attrs": [
+              {
+                "variable": "limits",
+                "label": "Limits",
+                "schema": {
+                  "type": "dict",
+                  "attrs": [
+                    {
+                      "variable": "cpu",
+                      "label": "CPU",
+                      "description": "CPU limit for Newsly.",
+                      "schema": {
+                        "type": "string",
+                        "max_length": 6,
+                        "valid_chars": "^(0\\.[1-9]|[1-9][0-9]*)(\\.[0-9]|m?)$",
+                        "valid_chars_error": "Valid CPU limit formats are</br>\n- Plain Integer - eg. 1</br>\n- Float - eg. 0.5</br>\n- Milicpu - eg. 500m\n",
+                        "default": "4000m",
+                        "required": true
+                      }
+                    },
+                    {
+                      "variable": "memory",
+                      "label": "Memory",
+                      "description": "Memory limit for Newsly.",
+                      "schema": {
+                        "type": "string",
+                        "max_length": 12,
+                        "valid_chars": "^[1-9][0-9]*([EPTGMK]i?|e[0-9]+)?$",
+                        "valid_chars_error": "Valid Memory limit formats are</br>\n- Suffixed with E/P/T/G/M/K - eg. 1G</br>\n- Suffixed with Ei/Pi/Ti/Gi/Mi/Ki - eg. 1Gi</br>\n- Plain Integer in bytes - eg. 1024</br>\n- Exponent - eg. 134e6\n",
+                        "default": "8Gi",
+                        "required": true
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "app_readme": "<h1>Bazarr</h1>\n<p><a href=\"https://www.bazarr.media/\">Bazarr</a> is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements.</p>\n<blockquote>\n<p>When application is installed, a container will be launched with <strong>root</strong> privileges.\nThis is required in order to apply the correct permissions to the <code>Bazarr</code> directories.\nAfterward, the <code>Bazarr</code> container will run as a <strong>non</strong>-root user (Default: <code>568</code>).\nAll mounted storage(s) will be <code>chown</code>ed only if the parent directory does not match the configured user.</p>\n</blockquote>",
+    "detailed_readme": "<h1>Bazarr</h1>\n<p><a href=\"https://www.bazarr.media/\">Bazarr</a> is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements.</p>\n<blockquote>\n<p>When application is installed, a container will be launched with <strong>root</strong> privileges.\nThis is required in order to apply the correct permissions to the <code>Bazarr</code> directories.\nAfterward, the <code>Bazarr</code> container will run as a <strong>non</strong>-root user (Default: <code>568</code>).\nAll mounted storage(s) will be <code>chown</code>ed only if the parent directory does not match the configured user.</p>\n</blockquote>",
+    "changelog": null
   }
+
 }
