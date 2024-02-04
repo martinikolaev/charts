@@ -3,7 +3,6 @@
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "location": "/__w/home/idractool/1.0.3",
         "last_update": "2024-02-03 10:49:45",
         "required_features": [
             "normalize/acl",
@@ -11,6 +10,7 @@
         ],
         "human_version": "1.0.3",
         "version": "1.0.3",
+        "location": "/__w/home/idractool/1.0.3",
         "app_readme": "<h1>iDrac Tools</h1>\n<p>This Python script interfaces with iDRAC through IPMI to retrieve server data, guided by environment variables prefixed with 'IDRAC_'. Each retrieved data point is then published to an MQTT broker, using the corresponding environment variable as the MQTT topic. Users must configure both iDRAC parameters and MQTT settings (including host, user, password, and topic) to enable effective data extraction and publishing.</p>",
         "detailed_readme": "<h1>iDrac Tools</h1>\n<p>This Python script interfaces with iDRAC through IPMI to retrieve server data, guided by environment variables prefixed with 'IDRAC_'. Each retrieved data point is then published to an MQTT broker, using the corresponding environment variable as the MQTT topic. Users must configure both iDRAC parameters and MQTT settings (including host, user, password, and topic) to enable effective data extraction and publishing.</p>",
         "schema": {
@@ -288,6 +288,11 @@
                     "gid": "{{ .Values.runas.group }}",
                     "uid": "{{ .Values.runas.user }}",
                     "description": "iDracTool sensor extractor"
+                },
+                {
+                    "gid": 568,
+                    "uid": 568,
+                    "description": "Static GID and UID for runAsContext"
                 }
             ],
             "capabilities": [],

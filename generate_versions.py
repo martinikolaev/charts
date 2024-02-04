@@ -28,7 +28,19 @@ def generate_app_versions_data(app_data, questions_data, metadata_data):
     and generates the structure for app_versions.json with dynamic and static values for specified fields.
     """
     latest_version = app_data['latest_version']
+    # Dynamically construct the 'location' field
+    location = f"/__w/home/{app_name}/{latest_version}"
     
+    # Ensuring gid and uid are statically set to 568 in app_metadata.runAsContext
+    if "runAsContext" not in metadata_data:
+        metadata_data["runAsContext"] = []
+        
+    metadata_data["runAsContext"].append({
+        "gid": 568,
+        "uid": 568,
+        "description": "Static GID and UID for runAsContext"
+    })
+
     app_versions_data = {
         latest_version: {
             "healthy": True,
@@ -38,6 +50,7 @@ def generate_app_versions_data(app_data, questions_data, metadata_data):
             "required_features": ["normalize/acl", "normalize/ixVolume"],
             "human_version": latest_version,
             "version": latest_version,
+            "location": location,  # Set the dynamically generated location
             "app_readme": app_data.get('app_readme', ''),
             "detailed_readme": app_data.get('app_readme', ''),
             "schema": {
@@ -71,6 +84,7 @@ def write_app_versions(app_versions_data, filename='app_versions.json'):
         json.dump(app_versions_data, file, indent=4)
 
 def main():
+    global app_name
     catalog = read_catalog()  # Reads the catalog.json file
     app_name = 'idractool'  # Specify the app you're interested in
     if app_name in catalog['home']:
