@@ -85,7 +85,7 @@
         {
           "variable": "toolConfig",
           "label": "",
-          "group": "Tool Configuration",
+          "group": "Tool Configuration", 
           "schema": {
             "type": "dict",
             "attrs": [
