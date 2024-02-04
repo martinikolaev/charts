@@ -3,6 +3,7 @@
         "healthy": true,
         "supported": true,
         "healthy_error": null,
+        "location": "/__w/home/idractool/1.0.3",
         "last_update": "2024-02-03 10:49:45",
         "required_features": [
             "normalize/acl",
