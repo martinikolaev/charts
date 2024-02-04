@@ -1,13 +1,13 @@
 {
-  "1.0.2": {
+  "1.0.1": {
     "healthy": true,
     "supported": true,
     "healthy_error": null,
-    "location": "/__w/home/frigate2discord/1.1.1",
+    "location": "/__w/home/frigate2discord/1.0.1",
     "last_update": "2024-02-03 10:49:45",
     "required_features": ["normalize/acl", "normalize/ixVolume"],
-    "human_version": "1.0.2",
-    "version": "1.0.2",
+    "human_version": "1.0.1",
+    "version": "1.0.1",
     "chart_metadata": {
       "name": "Frigate2Ddiscord",
       "description": "Frigate2Ddiscord is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements.",
@@ -15,8 +15,8 @@
         "title": "Frigate2Ddiscord"
       },
       "type": "application",
-      "version": "1.0.2",
-      "appVersion": "1.0.2",
+      "version": "1.0.1",
+      "appVersion": "1.0.1",
       "kubeVersion": ">=1.16.0-0",
       "maintainers": [
         {
@@ -28,9 +28,7 @@
       "home": "https://github.com/martinikolaev/frigate2discord",
       "icon": "https://media.sys.truenas.net/apps/bazarr/icons/icon.png",
       "sources": [
-        "https://github.com/onedr0p/containers/tree/main/apps/bazarr",
-        "https://github.com/truenas/charts/tree/master/library/ix-dev/community/bazarr",
-        "https://github.com/morpheus65535/bazarr"
+        "https://github.com/martinikolaev/frigate2discord/"
       ],
       "keywords": ["media", "subtitles"]
     },
@@ -167,13 +165,13 @@
             "type": "dict",
             "attrs": [
               {
-                "variable": "fqdn",
-                "label": "Frigate FQDN",
-                "description": "Frigate FQDN",
+                "variable": "apiurl",
+                "label": "API URL",
+                "description": "Frigate API URL",
                 "schema": {
                   "type": "string",
                   "required": true,
-                  "default": "frigate.domain.com"
+                  "default": "https://frigate-ip/api/events\""
                 }
               }
             ]
@@ -545,15 +543,15 @@
     "detailed_readme": "<h1>Bazarr</h1>\n<p><a href=\"https://www.bazarr.media/\">Bazarr</a> is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements.</p>\n<blockquote>\n<p>When application is installed, a container will be launched with <strong>root</strong> privileges.\nThis is required in order to apply the correct permissions to the <code>Bazarr</code> directories.\nAfterward, the <code>Bazarr</code> container will run as a <strong>non</strong>-root user (Default: <code>568</code>).\nAll mounted storage(s) will be <code>chown</code>ed only if the parent directory does not match the configured user.</p>\n</blockquote>",
     "changelog": null
   },
-  "1.0.1": {
+  "1.0.2": {
     "healthy": true,
     "supported": true,
     "healthy_error": null,
-    "location": "/__w/home/frigate2discord/1.0.1",
+    "location": "/__w/home/frigate2discord/1.1.1",
     "last_update": "2024-02-03 10:49:45",
     "required_features": ["normalize/acl", "normalize/ixVolume"],
-    "human_version": "1.0.1",
-    "version": "1.0.1",
+    "human_version": "1.0.2",
+    "version": "1.0.2",
     "chart_metadata": {
       "name": "Frigate2Ddiscord",
       "description": "Frigate2Ddiscord is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements.",
@@ -561,8 +559,8 @@
         "title": "Frigate2Ddiscord"
       },
       "type": "application",
-      "version": "1.0.1",
-      "appVersion": "1.0.1",
+      "version": "1.0.2",
+      "appVersion": "1.0.2",
       "kubeVersion": ">=1.16.0-0",
       "maintainers": [
         {
@@ -574,7 +572,9 @@
       "home": "https://github.com/martinikolaev/frigate2discord",
       "icon": "https://media.sys.truenas.net/apps/bazarr/icons/icon.png",
       "sources": [
-        "https://github.com/martinikolaev/frigate2discord/"
+        "https://github.com/onedr0p/containers/tree/main/apps/bazarr",
+        "https://github.com/truenas/charts/tree/master/library/ix-dev/community/bazarr",
+        "https://github.com/morpheus65535/bazarr"
       ],
       "keywords": ["media", "subtitles"]
     },
@@ -711,13 +711,13 @@
             "type": "dict",
             "attrs": [
               {
-                "variable": "apiurl",
-                "label": "API URL",
-                "description": "Frigate API URL",
+                "variable": "fqdn",
+                "label": "Frigate FQDN",
+                "description": "Frigate FQDN",
                 "schema": {
                   "type": "string",
                   "required": true,
-                  "default": "https://frigate-ip/api/events\""
+                  "default": "frigate.domain.com"
                 }
               }
             ]
