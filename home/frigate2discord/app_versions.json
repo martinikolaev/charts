@@ -553,7 +553,7 @@
     "last_update": "2024-02-03 10:49:45",
     "required_features": ["normalize/acl", "normalize/ixVolume"],
     "human_version": "1.4.0_1.2.8",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "chart_metadata": {
       "name": "Frigate2Ddiscord",
       "description": "Frigate2Ddiscord is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements.",
