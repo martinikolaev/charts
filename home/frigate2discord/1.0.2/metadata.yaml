@@ -1,0 +1,8 @@
+runAsContext:
+  - userName: abc
+    groupName: abc
+    gid: 568
+    uid: 568
+    description: Frigate2Discord notification forwarder
+capabilities: []
+hostMounts: []

@@ -1,0 +1,24 @@
+name: frigate2discord
+description: Retrieve MQTT values and send them over Discord channel via bot api
+annotations:
+  title: Frigate2Discord
+type: application
+version: 1.0.1
+apiVersion: v2
+appVersion: '1.0'
+kubeVersion: '>=1.16.0-0'
+maintainers:
+  - name: homechart
+    url: https://departy.xyz/
+    email: dev@departy.com
+dependencies:
+  - name: common
+    repository: file://../../../common
+    version: 1.2.2
+home: https://github.com/martinikolaev/frigate2discord
+icon: https://raw.githubusercontent.com/martinikolaev/charts/master/logos/discord.png
+sources:
+  - https://github.com/martinikolaev/frigate2discord
+keywords:
+  - frigate
+  - discord
