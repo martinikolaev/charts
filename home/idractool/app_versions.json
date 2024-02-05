@@ -1,601 +1,9 @@
 {
-    "1.0.2": {
-        "healthy": true,
-        "supported": true,
-        "healthy_error": null,
-        "last_update": "2024-02-05 11:05:10",
-        "required_features": [
-            "normalize/acl",
-            "normalize/ixVolume"
-        ],
-        "human_version": "1.0.2",
-        "version": "1.0.2",
-        "location": "/__w/home/idractool/1.0.2",
-        "app_readme": "",
-        "detailed_readme": "",
-        "schema": {
-            "groups": [
-                {
-                    "name": "Tool Configuration",
-                    "description": "Configure the scraping tool"
-                },
-                {
-                    "name": "iDrac Configuration",
-                    "description": "Configure iDrac values"
-                },
-                {
-                    "name": "MQTT Configuration",
-                    "description": "Configure MQTT values"
-                },
-                {
-                    "name": "User and Group Configuration",
-                    "description": "Configure User and Group for Newsly"
-                },
-                {
-                    "name": "Resources Configuration",
-                    "description": "Configure Resources for Newsly"
-                }
-            ],
-            "portals": {},
-            "questions": [
-                {
-                    "variable": "toolConfig",
-                    "label": "",
-                    "group": "Tool Configuration",
-                    "schema": {
-                        "type": "dict",
-                        "attrs": [
-                            {
-                                "variable": "pythonlogging",
-                                "label": "Python Logging",
-                                "description": "This will make so the python logs considered as usual logs",
-                                "schema": {
-                                    "type": "string",
-                                    "default": "1",
-                                    "required": true
-                                }
-                            },
-                            {
-                                "variable": "interval",
-                                "label": "Script Interval",
-                                "description": "How often data will be taken from the iDrac host",
-                                "schema": {
-                                    "type": "string",
-                                    "default": "10",
-                                    "required": true
-                                }
-                            },
-                            {
-                                "variable": "additionalEnvs",
-                                "label": "Additional Environment Variables",
-                                "description": "Configure additional environment variables for Newsly.",
-                                "schema": {
-                                    "type": "list",
-                                    "default": [],
-                                    "items": [
-                                        {
-                                            "variable": "env",
-                                            "label": "Environment Variable",
-                                            "schema": {
-                                                "type": "dict",
-                                                "attrs": [
-                                                    {
-                                                        "variable": "name",
-                                                        "label": "Name",
-                                                        "schema": {
-                                                            "type": "string",
-                                                            "required": true
-                                                        }
-                                                    },
-                                                    {
-                                                        "variable": "value",
-                                                        "label": "Value",
-                                                        "schema": {
-                                                            "type": "string",
-                                                            "required": true
-                                                        }
-                                                    }
-                                                ]
-                                            }
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
-                    }
-                },
-                {
-                    "variable": "idracsetup",
-                    "label": "Configure iDrac values",
-                    "group": "iDrac Configuration",
-                    "schema": {
-                        "type": "dict",
-                        "attrs": [
-                            {
-                                "variable": "host",
-                                "label": "iDrac Host",
-                                "description": "Hostname or IP address of the database server.",
-                                "schema": {
-                                    "type": "string",
-                                    "default": "10.2.20.25",
-                                    "required": true
-                                }
-                            },
-                            {
-                                "variable": "username",
-                                "label": "iDrac Username",
-                                "description": "Username that will be used to communicate with iDrac",
-                                "schema": {
-                                    "type": "string",
-                                    "required": true
-                                }
-                            },
-                            {
-                                "variable": "password",
-                                "label": "iDrac Password",
-                                "description": "Password for the user that will be used to communicate with iDrac.",
-                                "schema": {
-                                    "type": "string",
-                                    "required": true,
-                                    "private": true
-                                }
-                            },
-                            {
-                                "variable": "pythonlogging",
-                                "label": "Python Logging",
-                                "description": "This will make so the python logs considered as usual logs",
-                                "schema": {
-                                    "type": "string",
-                                    "default": "1",
-                                    "required": true
-                                }
-                            }
-                        ]
-                    }
-                },
-                {
-                    "variable": "mqttsetup",
-                    "label": "Configure MQTT values",
-                    "group": "MQTT Configuration",
-                    "schema": {
-                        "type": "dict",
-                        "attrs": [
-                            {
-                                "variable": "host",
-                                "label": "MQTT Host",
-                                "description": "Hostname or IP address of the MQTT server.",
-                                "schema": {
-                                    "type": "string",
-                                    "default": "10.2.20.25",
-                                    "required": true
-                                }
-                            },
-                            {
-                                "variable": "username",
-                                "label": "MQTT Username",
-                                "description": "Username that will be used to communicate with MQTT",
-                                "schema": {
-                                    "type": "string",
-                                    "required": true
-                                }
-                            },
-                            {
-                                "variable": "password",
-                                "label": "MQTT Password",
-                                "description": "Password for the user that will be used to communicate with MQTT.",
-                                "schema": {
-                                    "type": "string",
-                                    "required": true,
-                                    "private": true
-                                }
-                            },
-                            {
-                                "variable": "topic",
-                                "label": "MQTT Topic",
-                                "description": "MQTT Topic to which will be published",
-                                "schema": {
-                                    "type": "string",
-                                    "required": true
-                                }
-                            }
-                        ]
-                    }
-                },
-                {
-                    "variable": "runas",
-                    "label": "",
-                    "group": "User and Group Configuration",
-                    "schema": {
-                        "type": "dict",
-                        "attrs": [
-                            {
-                                "variable": "user",
-                                "label": "User ID",
-                                "description": "The user id that Newsly will run as.",
-                                "schema": {
-                                    "type": "int",
-                                    "min": 2,
-                                    "default": 568,
-                                    "required": true
-                                }
-                            },
-                            {
-                                "variable": "group",
-                                "label": "Group ID",
-                                "description": "The group id that Newsly will run as.",
-                                "schema": {
-                                    "type": "int",
-                                    "min": 2,
-                                    "default": 568,
-                                    "required": true
-                                }
-                            }
-                        ]
-                    }
-                },
-                {
-                    "variable": "resources",
-                    "group": "Resources Configuration",
-                    "label": "",
-                    "schema": {
-                        "type": "dict",
-                        "attrs": [
-                            {
-                                "variable": "limits",
-                                "label": "Limits",
-                                "schema": {
-                                    "type": "dict",
-                                    "attrs": [
-                                        {
-                                            "variable": "cpu",
-                                            "label": "CPU",
-                                            "description": "CPU limit for Newsly.",
-                                            "schema": {
-                                                "type": "string",
-                                                "max_length": 6,
-                                                "valid_chars": "^(0\\.[1-9]|[1-9][0-9]*)(\\.[0-9]|m?)$",
-                                                "valid_chars_error": "Valid CPU limit formats are</br>\n- Plain Integer - eg. 1</br>\n- Float - eg. 0.5</br>\n- Milicpu - eg. 500m\n",
-                                                "default": "4000m",
-                                                "required": true
-                                            }
-                                        },
-                                        {
-                                            "variable": "memory",
-                                            "label": "Memory",
-                                            "description": "Memory limit for Newsly.",
-                                            "schema": {
-                                                "type": "string",
-                                                "max_length": 12,
-                                                "valid_chars": "^[1-9][0-9]*([EPTGMK]i?|e[0-9]+)?$",
-                                                "valid_chars_error": "Valid Memory limit formats are</br>\n- Suffixed with E/P/T/G/M/K - eg. 1G</br>\n- Suffixed with Ei/Pi/Ti/Gi/Mi/Ki - eg. 1Gi</br>\n- Plain Integer in bytes - eg. 1024</br>\n- Exponent - eg. 134e6\n",
-                                                "default": "1Gi",
-                                                "required": true
-                                            }
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "app_metadata": {
-            "runAsContext": [
-                {
-                    "userName": "newsly",
-                    "groupName": "newsly",
-                    "gid": 568,
-                    "uid": 568,
-                    "description": "Newsly can run as any non-root user."
-                }
-            ],
-            "capabilities": [],
-            "hostMounts": []
-        },
-        "chart_metadata": {}
-    },
-    "1.0.3": {
-        "healthy": true,
-        "supported": true,
-        "healthy_error": null,
-        "last_update": "2024-02-05 11:05:10",
-        "required_features": [
-            "normalize/acl",
-            "normalize/ixVolume"
-        ],
-        "human_version": "1.0.3",
-        "version": "1.0.3",
-        "location": "/__w/home/idractool/1.0.3",
-        "app_readme": "",
-        "detailed_readme": "",
-        "schema": {
-            "groups": [
-                {
-                    "name": "Tool Configuration",
-                    "description": "Configure the scraping tool"
-                },
-                {
-                    "name": "iDrac Configuration",
-                    "description": "Configure iDrac values"
-                },
-                {
-                    "name": "MQTT Configuration",
-                    "description": "Configure MQTT values"
-                },
-                {
-                    "name": "User and Group Configuration",
-                    "description": "Configure User and Group for Newsly"
-                },
-                {
-                    "name": "Resources Configuration",
-                    "description": "Configure Resources for Newsly"
-                }
-            ],
-            "portals": {},
-            "questions": [
-                {
-                    "variable": "toolConfig",
-                    "label": "",
-                    "group": "Tool Configuration",
-                    "schema": {
-                        "type": "dict",
-                        "attrs": [
-                            {
-                                "variable": "pythonlogging",
-                                "label": "Python Logging",
-                                "description": "This will make so the python logs considered as usual logs",
-                                "schema": {
-                                    "type": "string",
-                                    "default": "1",
-                                    "required": true
-                                }
-                            },
-                            {
-                                "variable": "interval",
-                                "label": "Script Interval",
-                                "description": "How often data will be taken from the iDrac host",
-                                "schema": {
-                                    "type": "string",
-                                    "default": "10",
-                                    "required": true
-                                }
-                            },
-                            {
-                                "variable": "additionalEnvs",
-                                "label": "Additional Environment Variables",
-                                "description": "Configure additional environment variables for Newsly.",
-                                "schema": {
-                                    "type": "list",
-                                    "default": [],
-                                    "items": [
-                                        {
-                                            "variable": "env",
-                                            "label": "Environment Variable",
-                                            "schema": {
-                                                "type": "dict",
-                                                "attrs": [
-                                                    {
-                                                        "variable": "name",
-                                                        "label": "Name",
-                                                        "schema": {
-                                                            "type": "string",
-                                                            "required": true
-                                                        }
-                                                    },
-                                                    {
-                                                        "variable": "value",
-                                                        "label": "Value",
-                                                        "schema": {
-                                                            "type": "string",
-                                                            "required": true
-                                                        }
-                                                    }
-                                                ]
-                                            }
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
-                    }
-                },
-                {
-                    "variable": "idracsetup",
-                    "label": "Configure iDrac values",
-                    "group": "iDrac Configuration",
-                    "schema": {
-                        "type": "dict",
-                        "attrs": [
-                            {
-                                "variable": "host",
-                                "label": "iDrac Host",
-                                "description": "Hostname or IP address of the database server.",
-                                "schema": {
-                                    "type": "string",
-                                    "default": "10.2.20.25",
-                                    "required": true
-                                }
-                            },
-                            {
-                                "variable": "username",
-                                "label": "iDrac Username",
-                                "description": "Username that will be used to communicate with iDrac",
-                                "schema": {
-                                    "type": "string",
-                                    "required": true
-                                }
-                            },
-                            {
-                                "variable": "password",
-                                "label": "iDrac Password",
-                                "description": "Password for the user that will be used to communicate with iDrac.",
-                                "schema": {
-                                    "type": "string",
-                                    "required": true,
-                                    "private": true
-                                }
-                            },
-                            {
-                                "variable": "pythonlogging",
-                                "label": "Python Logging",
-                                "description": "This will make so the python logs considered as usual logs",
-                                "schema": {
-                                    "type": "string",
-                                    "default": "1",
-                                    "required": true
-                                }
-                            }
-                        ]
-                    }
-                },
-                {
-                    "variable": "mqttsetup",
-                    "label": "Configure MQTT values",
-                    "group": "MQTT Configuration",
-                    "schema": {
-                        "type": "dict",
-                        "attrs": [
-                            {
-                                "variable": "host",
-                                "label": "MQTT Host",
-                                "description": "Hostname or IP address of the MQTT server.",
-                                "schema": {
-                                    "type": "string",
-                                    "default": "10.2.20.25",
-                                    "required": true
-                                }
-                            },
-                            {
-                                "variable": "username",
-                                "label": "MQTT Username",
-                                "description": "Username that will be used to communicate with MQTT",
-                                "schema": {
-                                    "type": "string",
-                                    "required": true
-                                }
-                            },
-                            {
-                                "variable": "password",
-                                "label": "MQTT Password",
-                                "description": "Password for the user that will be used to communicate with MQTT.",
-                                "schema": {
-                                    "type": "string",
-                                    "required": true,
-                                    "private": true
-                                }
-                            },
-                            {
-                                "variable": "topic",
-                                "label": "MQTT Topic",
-                                "description": "MQTT Topic to which will be published",
-                                "schema": {
-                                    "type": "string",
-                                    "required": true
-                                }
-                            }
-                        ]
-                    }
-                },
-                {
-                    "variable": "runas",
-                    "label": "",
-                    "group": "User and Group Configuration",
-                    "schema": {
-                        "type": "dict",
-                        "attrs": [
-                            {
-                                "variable": "user",
-                                "label": "User ID",
-                                "description": "The user id that Newsly will run as.",
-                                "schema": {
-                                    "type": "int",
-                                    "min": 2,
-                                    "default": 568,
-                                    "required": true
-                                }
-                            },
-                            {
-                                "variable": "group",
-                                "label": "Group ID",
-                                "description": "The group id that Newsly will run as.",
-                                "schema": {
-                                    "type": "int",
-                                    "min": 2,
-                                    "default": 568,
-                                    "required": true
-                                }
-                            }
-                        ]
-                    }
-                },
-                {
-                    "variable": "resources",
-                    "group": "Resources Configuration",
-                    "label": "",
-                    "schema": {
-                        "type": "dict",
-                        "attrs": [
-                            {
-                                "variable": "limits",
-                                "label": "Limits",
-                                "schema": {
-                                    "type": "dict",
-                                    "attrs": [
-                                        {
-                                            "variable": "cpu",
-                                            "label": "CPU",
-                                            "description": "CPU limit for Newsly.",
-                                            "schema": {
-                                                "type": "string",
-                                                "max_length": 6,
-                                                "valid_chars": "^(0\\.[1-9]|[1-9][0-9]*)(\\.[0-9]|m?)$",
-                                                "valid_chars_error": "Valid CPU limit formats are</br>\n- Plain Integer - eg. 1</br>\n- Float - eg. 0.5</br>\n- Milicpu - eg. 500m\n",
-                                                "default": "4000m",
-                                                "required": true
-                                            }
-                                        },
-                                        {
-                                            "variable": "memory",
-                                            "label": "Memory",
-                                            "description": "Memory limit for Newsly.",
-                                            "schema": {
-                                                "type": "string",
-                                                "max_length": 12,
-                                                "valid_chars": "^[1-9][0-9]*([EPTGMK]i?|e[0-9]+)?$",
-                                                "valid_chars_error": "Valid Memory limit formats are</br>\n- Suffixed with E/P/T/G/M/K - eg. 1G</br>\n- Suffixed with Ei/Pi/Ti/Gi/Mi/Ki - eg. 1Gi</br>\n- Plain Integer in bytes - eg. 1024</br>\n- Exponent - eg. 134e6\n",
-                                                "default": "1Gi",
-                                                "required": true
-                                            }
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "app_metadata": {
-            "runAsContext": [
-                {
-                    "userName": "abc",
-                    "groupName": "abc",
-                    "gid": "{{ .Values.runas.group }}",
-                    "uid": "{{ .Values.runas.user }}",
-                    "description": "iDracTool sensor extractor"
-                }
-            ],
-            "capabilities": [],
-            "hostMounts": []
-        },
-        "chart_metadata": {}
-    },
     "1.0.1": {
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "last_update": "2024-02-05 11:05:30",
+        "last_update": "2024-02-05 11:09:42",
         "required_features": [
             "normalize/acl",
             "normalize/ixVolume"
@@ -1181,11 +589,597 @@
         "app_metadata": {
             "runAsContext": [
                 {
-                    "userName": "newsly",
-                    "groupName": "newsly",
                     "gid": 568,
                     "uid": 568,
-                    "description": "Newsly can run as any non-root user."
+                    "description": "Static GID and UID for runAsContext"
+                }
+            ],
+            "capabilities": [],
+            "hostMounts": []
+        },
+        "chart_metadata": {}
+    },
+    "1.0.3": {
+        "healthy": true,
+        "supported": true,
+        "healthy_error": null,
+        "last_update": "2024-02-05 11:09:42",
+        "required_features": [
+            "normalize/acl",
+            "normalize/ixVolume"
+        ],
+        "human_version": "1.0.3",
+        "version": "1.0.3",
+        "location": "/__w/home/idractool/1.0.3",
+        "app_readme": "",
+        "detailed_readme": "",
+        "schema": {
+            "groups": [
+                {
+                    "name": "Tool Configuration",
+                    "description": "Configure the scraping tool"
+                },
+                {
+                    "name": "iDrac Configuration",
+                    "description": "Configure iDrac values"
+                },
+                {
+                    "name": "MQTT Configuration",
+                    "description": "Configure MQTT values"
+                },
+                {
+                    "name": "User and Group Configuration",
+                    "description": "Configure User and Group for Newsly"
+                },
+                {
+                    "name": "Resources Configuration",
+                    "description": "Configure Resources for Newsly"
+                }
+            ],
+            "portals": {},
+            "questions": [
+                {
+                    "variable": "toolConfig",
+                    "label": "",
+                    "group": "Tool Configuration",
+                    "schema": {
+                        "type": "dict",
+                        "attrs": [
+                            {
+                                "variable": "pythonlogging",
+                                "label": "Python Logging",
+                                "description": "This will make so the python logs considered as usual logs",
+                                "schema": {
+                                    "type": "string",
+                                    "default": "1",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "variable": "interval",
+                                "label": "Script Interval",
+                                "description": "How often data will be taken from the iDrac host",
+                                "schema": {
+                                    "type": "string",
+                                    "default": "10",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "variable": "additionalEnvs",
+                                "label": "Additional Environment Variables",
+                                "description": "Configure additional environment variables for Newsly.",
+                                "schema": {
+                                    "type": "list",
+                                    "default": [],
+                                    "items": [
+                                        {
+                                            "variable": "env",
+                                            "label": "Environment Variable",
+                                            "schema": {
+                                                "type": "dict",
+                                                "attrs": [
+                                                    {
+                                                        "variable": "name",
+                                                        "label": "Name",
+                                                        "schema": {
+                                                            "type": "string",
+                                                            "required": true
+                                                        }
+                                                    },
+                                                    {
+                                                        "variable": "value",
+                                                        "label": "Value",
+                                                        "schema": {
+                                                            "type": "string",
+                                                            "required": true
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "variable": "idracsetup",
+                    "label": "Configure iDrac values",
+                    "group": "iDrac Configuration",
+                    "schema": {
+                        "type": "dict",
+                        "attrs": [
+                            {
+                                "variable": "host",
+                                "label": "iDrac Host",
+                                "description": "Hostname or IP address of the database server.",
+                                "schema": {
+                                    "type": "string",
+                                    "default": "10.2.20.25",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "variable": "username",
+                                "label": "iDrac Username",
+                                "description": "Username that will be used to communicate with iDrac",
+                                "schema": {
+                                    "type": "string",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "variable": "password",
+                                "label": "iDrac Password",
+                                "description": "Password for the user that will be used to communicate with iDrac.",
+                                "schema": {
+                                    "type": "string",
+                                    "required": true,
+                                    "private": true
+                                }
+                            },
+                            {
+                                "variable": "pythonlogging",
+                                "label": "Python Logging",
+                                "description": "This will make so the python logs considered as usual logs",
+                                "schema": {
+                                    "type": "string",
+                                    "default": "1",
+                                    "required": true
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "variable": "mqttsetup",
+                    "label": "Configure MQTT values",
+                    "group": "MQTT Configuration",
+                    "schema": {
+                        "type": "dict",
+                        "attrs": [
+                            {
+                                "variable": "host",
+                                "label": "MQTT Host",
+                                "description": "Hostname or IP address of the MQTT server.",
+                                "schema": {
+                                    "type": "string",
+                                    "default": "10.2.20.25",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "variable": "username",
+                                "label": "MQTT Username",
+                                "description": "Username that will be used to communicate with MQTT",
+                                "schema": {
+                                    "type": "string",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "variable": "password",
+                                "label": "MQTT Password",
+                                "description": "Password for the user that will be used to communicate with MQTT.",
+                                "schema": {
+                                    "type": "string",
+                                    "required": true,
+                                    "private": true
+                                }
+                            },
+                            {
+                                "variable": "topic",
+                                "label": "MQTT Topic",
+                                "description": "MQTT Topic to which will be published",
+                                "schema": {
+                                    "type": "string",
+                                    "required": true
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "variable": "runas",
+                    "label": "",
+                    "group": "User and Group Configuration",
+                    "schema": {
+                        "type": "dict",
+                        "attrs": [
+                            {
+                                "variable": "user",
+                                "label": "User ID",
+                                "description": "The user id that Newsly will run as.",
+                                "schema": {
+                                    "type": "int",
+                                    "min": 2,
+                                    "default": 568,
+                                    "required": true
+                                }
+                            },
+                            {
+                                "variable": "group",
+                                "label": "Group ID",
+                                "description": "The group id that Newsly will run as.",
+                                "schema": {
+                                    "type": "int",
+                                    "min": 2,
+                                    "default": 568,
+                                    "required": true
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "variable": "resources",
+                    "group": "Resources Configuration",
+                    "label": "",
+                    "schema": {
+                        "type": "dict",
+                        "attrs": [
+                            {
+                                "variable": "limits",
+                                "label": "Limits",
+                                "schema": {
+                                    "type": "dict",
+                                    "attrs": [
+                                        {
+                                            "variable": "cpu",
+                                            "label": "CPU",
+                                            "description": "CPU limit for Newsly.",
+                                            "schema": {
+                                                "type": "string",
+                                                "max_length": 6,
+                                                "valid_chars": "^(0\\.[1-9]|[1-9][0-9]*)(\\.[0-9]|m?)$",
+                                                "valid_chars_error": "Valid CPU limit formats are</br>\n- Plain Integer - eg. 1</br>\n- Float - eg. 0.5</br>\n- Milicpu - eg. 500m\n",
+                                                "default": "4000m",
+                                                "required": true
+                                            }
+                                        },
+                                        {
+                                            "variable": "memory",
+                                            "label": "Memory",
+                                            "description": "Memory limit for Newsly.",
+                                            "schema": {
+                                                "type": "string",
+                                                "max_length": 12,
+                                                "valid_chars": "^[1-9][0-9]*([EPTGMK]i?|e[0-9]+)?$",
+                                                "valid_chars_error": "Valid Memory limit formats are</br>\n- Suffixed with E/P/T/G/M/K - eg. 1G</br>\n- Suffixed with Ei/Pi/Ti/Gi/Mi/Ki - eg. 1Gi</br>\n- Plain Integer in bytes - eg. 1024</br>\n- Exponent - eg. 134e6\n",
+                                                "default": "1Gi",
+                                                "required": true
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "app_metadata": {
+            "runAsContext": [
+                {
+                    "gid": 568,
+                    "uid": 568,
+                    "description": "Static GID and UID for runAsContext"
+                }
+            ],
+            "capabilities": [],
+            "hostMounts": []
+        },
+        "chart_metadata": {}
+    },
+    "1.0.2": {
+        "healthy": true,
+        "supported": true,
+        "healthy_error": null,
+        "last_update": "2024-02-05 11:10:04",
+        "required_features": [
+            "normalize/acl",
+            "normalize/ixVolume"
+        ],
+        "human_version": "1.0.2",
+        "version": "1.0.2",
+        "location": "/__w/home/idractool/1.0.2",
+        "app_readme": "",
+        "detailed_readme": "",
+        "schema": {
+            "groups": [
+                {
+                    "name": "Tool Configuration",
+                    "description": "Configure the scraping tool"
+                },
+                {
+                    "name": "iDrac Configuration",
+                    "description": "Configure iDrac values"
+                },
+                {
+                    "name": "MQTT Configuration",
+                    "description": "Configure MQTT values"
+                },
+                {
+                    "name": "User and Group Configuration",
+                    "description": "Configure User and Group for Newsly"
+                },
+                {
+                    "name": "Resources Configuration",
+                    "description": "Configure Resources for Newsly"
+                }
+            ],
+            "portals": {},
+            "questions": [
+                {
+                    "variable": "toolConfig",
+                    "label": "",
+                    "group": "Tool Configuration",
+                    "schema": {
+                        "type": "dict",
+                        "attrs": [
+                            {
+                                "variable": "pythonlogging",
+                                "label": "Python Logging",
+                                "description": "This will make so the python logs considered as usual logs",
+                                "schema": {
+                                    "type": "string",
+                                    "default": "1",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "variable": "interval",
+                                "label": "Script Interval",
+                                "description": "How often data will be taken from the iDrac host",
+                                "schema": {
+                                    "type": "string",
+                                    "default": "10",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "variable": "additionalEnvs",
+                                "label": "Additional Environment Variables",
+                                "description": "Configure additional environment variables for Newsly.",
+                                "schema": {
+                                    "type": "list",
+                                    "default": [],
+                                    "items": [
+                                        {
+                                            "variable": "env",
+                                            "label": "Environment Variable",
+                                            "schema": {
+                                                "type": "dict",
+                                                "attrs": [
+                                                    {
+                                                        "variable": "name",
+                                                        "label": "Name",
+                                                        "schema": {
+                                                            "type": "string",
+                                                            "required": true
+                                                        }
+                                                    },
+                                                    {
+                                                        "variable": "value",
+                                                        "label": "Value",
+                                                        "schema": {
+                                                            "type": "string",
+                                                            "required": true
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "variable": "idracsetup",
+                    "label": "Configure iDrac values",
+                    "group": "iDrac Configuration",
+                    "schema": {
+                        "type": "dict",
+                        "attrs": [
+                            {
+                                "variable": "host",
+                                "label": "iDrac Host",
+                                "description": "Hostname or IP address of the database server.",
+                                "schema": {
+                                    "type": "string",
+                                    "default": "10.2.20.25",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "variable": "username",
+                                "label": "iDrac Username",
+                                "description": "Username that will be used to communicate with iDrac",
+                                "schema": {
+                                    "type": "string",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "variable": "password",
+                                "label": "iDrac Password",
+                                "description": "Password for the user that will be used to communicate with iDrac.",
+                                "schema": {
+                                    "type": "string",
+                                    "required": true,
+                                    "private": true
+                                }
+                            },
+                            {
+                                "variable": "pythonlogging",
+                                "label": "Python Logging",
+                                "description": "This will make so the python logs considered as usual logs",
+                                "schema": {
+                                    "type": "string",
+                                    "default": "1",
+                                    "required": true
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "variable": "mqttsetup",
+                    "label": "Configure MQTT values",
+                    "group": "MQTT Configuration",
+                    "schema": {
+                        "type": "dict",
+                        "attrs": [
+                            {
+                                "variable": "host",
+                                "label": "MQTT Host",
+                                "description": "Hostname or IP address of the MQTT server.",
+                                "schema": {
+                                    "type": "string",
+                                    "default": "10.2.20.25",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "variable": "username",
+                                "label": "MQTT Username",
+                                "description": "Username that will be used to communicate with MQTT",
+                                "schema": {
+                                    "type": "string",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "variable": "password",
+                                "label": "MQTT Password",
+                                "description": "Password for the user that will be used to communicate with MQTT.",
+                                "schema": {
+                                    "type": "string",
+                                    "required": true,
+                                    "private": true
+                                }
+                            },
+                            {
+                                "variable": "topic",
+                                "label": "MQTT Topic",
+                                "description": "MQTT Topic to which will be published",
+                                "schema": {
+                                    "type": "string",
+                                    "required": true
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "variable": "runas",
+                    "label": "",
+                    "group": "User and Group Configuration",
+                    "schema": {
+                        "type": "dict",
+                        "attrs": [
+                            {
+                                "variable": "user",
+                                "label": "User ID",
+                                "description": "The user id that Newsly will run as.",
+                                "schema": {
+                                    "type": "int",
+                                    "min": 2,
+                                    "default": 568,
+                                    "required": true
+                                }
+                            },
+                            {
+                                "variable": "group",
+                                "label": "Group ID",
+                                "description": "The group id that Newsly will run as.",
+                                "schema": {
+                                    "type": "int",
+                                    "min": 2,
+                                    "default": 568,
+                                    "required": true
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "variable": "resources",
+                    "group": "Resources Configuration",
+                    "label": "",
+                    "schema": {
+                        "type": "dict",
+                        "attrs": [
+                            {
+                                "variable": "limits",
+                                "label": "Limits",
+                                "schema": {
+                                    "type": "dict",
+                                    "attrs": [
+                                        {
+                                            "variable": "cpu",
+                                            "label": "CPU",
+                                            "description": "CPU limit for Newsly.",
+                                            "schema": {
+                                                "type": "string",
+                                                "max_length": 6,
+                                                "valid_chars": "^(0\\.[1-9]|[1-9][0-9]*)(\\.[0-9]|m?)$",
+                                                "valid_chars_error": "Valid CPU limit formats are</br>\n- Plain Integer - eg. 1</br>\n- Float - eg. 0.5</br>\n- Milicpu - eg. 500m\n",
+                                                "default": "4000m",
+                                                "required": true
+                                            }
+                                        },
+                                        {
+                                            "variable": "memory",
+                                            "label": "Memory",
+                                            "description": "Memory limit for Newsly.",
+                                            "schema": {
+                                                "type": "string",
+                                                "max_length": 12,
+                                                "valid_chars": "^[1-9][0-9]*([EPTGMK]i?|e[0-9]+)?$",
+                                                "valid_chars_error": "Valid Memory limit formats are</br>\n- Suffixed with E/P/T/G/M/K - eg. 1G</br>\n- Suffixed with Ei/Pi/Ti/Gi/Mi/Ki - eg. 1Gi</br>\n- Plain Integer in bytes - eg. 1024</br>\n- Exponent - eg. 134e6\n",
+                                                "default": "1Gi",
+                                                "required": true
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "app_metadata": {
+            "runAsContext": [
+                {
+                    "gid": 568,
+                    "uid": 568,
+                    "description": "Static GID and UID for runAsContext"
                 }
             ],
             "capabilities": [],

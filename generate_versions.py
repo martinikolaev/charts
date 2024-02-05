@@ -30,10 +30,16 @@ def generate_app_versions_data(app_name, version):
     questions_data = read_yaml_file(app_name, version, 'questions.yaml')
     metadata_data = read_yaml_file(app_name, version, 'metadata.yaml')
     
+    # Ensure gid and uid are always 568 in runAsContext
+    metadata_data["runAsContext"] = [{
+        "gid": 568,
+        "uid": 568,
+        "description": "Static GID and UID for runAsContext"
+    }] if "runAsContext" in metadata_data else []
+
     location = f"/__w/home/{app_name}/{version}"
     last_update = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    # Example of generating app version data, replace and expand as necessary
     app_version_data = {
         "healthy": True,
         "supported": True,
