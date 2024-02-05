@@ -5,7 +5,7 @@ import re
 from datetime import datetime
 
 # Flag to control recreation of app_versions.json files
-RECREATE_ALL = False
+RECREATE_ALL = True
 
 def list_all_apps(base_path='home'):
     try:
