@@ -4,12 +4,18 @@ import os
 import re
 from datetime import datetime
 
-def read_catalog(filename='catalog.json'):
-    with open(filename, 'r') as file:
-        return json.load(file)
+# Flag to control recreation of app_versions.json files
+RECREATE_ALL = False
 
-def read_yaml_file(app_name, version, filename):
-    yaml_file_path = os.path.join('home', app_name, version, filename)
+def list_all_apps(base_path='home'):
+    try:
+        return [d for d in os.listdir(base_path) if os.path.isdir(os.path.join(base_path, d))]
+    except FileNotFoundError:
+        print(f"Base directory {base_path} not found.")
+        return []
+
+def read_yaml_file(app_path, version, filename):
+    yaml_file_path = os.path.join(app_path, version, filename)
     try:
         with open(yaml_file_path, 'r') as file:
             return yaml.safe_load(file)
@@ -17,27 +23,25 @@ def read_yaml_file(app_name, version, filename):
         print(f"File {yaml_file_path} not found.")
         return {}
 
-def get_app_versions(app_name):
-    versions_path = os.path.join('home', app_name)
+def get_app_versions(app_path):
     try:
-        version_dirs = [d for d in os.listdir(versions_path) if os.path.isdir(os.path.join(versions_path, d)) and re.match(r'^\d+\.\d+\.\d+$', d)]
+        version_dirs = [d for d in os.listdir(app_path) if os.path.isdir(os.path.join(app_path, d)) and re.match(r'^\d+\.\d+\.\d+$', d)]
         return sorted(version_dirs, key=lambda x: [int(part) for part in x.split('.')])
     except FileNotFoundError:
-        print(f"Directory {versions_path} not found.")
+        print(f"App directory {app_path} not found.")
         return []
 
-def generate_app_versions_data(app_name, version):
-    questions_data = read_yaml_file(app_name, version, 'questions.yaml')
-    metadata_data = read_yaml_file(app_name, version, 'metadata.yaml')
-    
-    # Ensure gid and uid are always 568 in runAsContext
+def generate_app_versions_data(app_path, version):
+    questions_data = read_yaml_file(app_path, version, 'questions.yaml') or {}
+    metadata_data = read_yaml_file(app_path, version, 'metadata.yaml') or {}
+
     metadata_data["runAsContext"] = [{
         "gid": 568,
         "uid": 568,
         "description": "Static GID and UID for runAsContext"
     }] if "runAsContext" in metadata_data else []
 
-    location = f"/__w/home/{app_name}/{version}"
+    location = f"/__w/{app_path}/{version}"
     last_update = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     app_version_data = {
@@ -57,42 +61,49 @@ def generate_app_versions_data(app_name, version):
             "questions": questions_data.get('questions', [])
         },
         "app_metadata": metadata_data,
-        "chart_metadata": {
-            # Placeholder values, adjust according to your needs
-        }
     }
     return app_version_data
 
-def read_existing_versions(filename='app_versions.json'):
+def write_app_versions(app_versions, app_path):
+    filename = os.path.join(app_path, 'app_versions.json')
+    with open(filename, 'w') as file:
+        json.dump(app_versions, file, indent=4)
+
+def process_app_versions(app_name, base_path='home'):
+    app_path = os.path.join(base_path, app_name)
+    if RECREATE_ALL or not os.path.exists(os.path.join(app_path, 'app_versions.json')):
+        existing_versions = {}
+    else:
+        existing_versions = read_existing_versions(app_path)
+    
+    updated = False
+
+    for version in get_app_versions(app_path):
+        if RECREATE_ALL or version not in existing_versions:
+            print(f"Processing version {version} for {app_name}...")
+            app_version_data = generate_app_versions_data(app_path, version)
+            existing_versions[version] = app_version_data
+            updated = True
+
+    if updated:
+        write_app_versions(existing_versions, app_path)
+        print(f"Updated versions for {app_name}.")
+
+def read_existing_versions(app_path):
+    filename = os.path.join(app_path, 'app_versions.json')
     try:
         with open(filename, 'r') as file:
             return json.load(file)
     except FileNotFoundError:
         return {}
 
-def write_app_versions(app_versions, filename='app_versions.json'):
-    with open(filename, 'w') as file:
-        json.dump(app_versions, file, indent=4)
-
 def main():
-    app_name = 'idractool'  # Example app name, replace as necessary
-    existing_versions = read_existing_versions()
-    updated = False
-
-    for version in get_app_versions(app_name):
-        if version not in existing_versions:
-            print(f"Processing version {version} for {app_name}...")
-            app_version_data = generate_app_versions_data(app_name, version)
-            existing_versions[version] = app_version_data
-            updated = True
-        else:
-            print(f"Version {version} already exists for {app_name}, skipping...")
-
-    if updated:
-        write_app_versions(existing_versions)
-        print(f"Updated {app_name}_versions.json with new versions.")
-    else:
-        print(f"No new versions to update for {app_name}.")
+    base_path = 'home'
+    all_apps = list_all_apps(base_path)
+    
+    for app_name in all_apps:
+        print(f"Processing {app_name}...")
+        process_app_versions(app_name, base_path)
 
 if __name__ == "__main__":
     main()
