@@ -42,14 +42,23 @@ def generate_app_versions_data(app_name, app_path, version, catalog_data):
     questions_data = read_yaml_file(app_path, version, 'questions.yaml') or {}
     metadata_data = read_yaml_file(app_path, version, 'metadata.yaml') or {}
 
+    # Process runAsContext to ensure gid and uid are integers, replace with 568 if not
+    if "runAsContext" in metadata_data:
+        for context in metadata_data["runAsContext"]:
+            try:
+                context["gid"] = int(context["gid"])
+                context["uid"] = int(context["uid"])
+            except (ValueError, TypeError):
+                context["gid"] = 568
+                context["uid"] = 568
+    else:
+        metadata_data["runAsContext"] = []
+
     app_data = catalog_data.get('home', {}).get(app_name, {})
-    
     chart_metadata = {
         "name": app_data.get("name"),
         "description": app_data.get("description"),
-        "annotations": {
-            "title": app_data.get("title")
-        },
+        "annotations": {"title": app_data.get("title")},
         "type": "application",
         "version": version,
         "appVersion": app_data.get("latest_app_version", version),
