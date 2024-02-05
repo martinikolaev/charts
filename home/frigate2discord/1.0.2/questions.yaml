@@ -73,9 +73,9 @@ questions:
   schema:
     type: dict
     attrs:
-    - variable: apiurl
-      label: API URL
-      description: Frigate API URL
+    - variable: fqdn
+      label: Frigate FQDN
+      description: Frigate FQDN
       schema:
         type: string
         required: true

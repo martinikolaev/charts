@@ -1,7 +1,7 @@
 image:
-  repository: registry.departy.xyz/frigate_to_discord
+  repository: registry.departy.xyz/frigate2discord
   pullPolicy: IfNotPresent
-  tag: '2024.01'
+  tag: '2024.02.03'
 
 
 resources:
@@ -13,11 +13,11 @@ frigate2discordConfig:
   instanceName: frigate2discord
   additionalEnvs: []
 frigate2discordNetwork:
-  webPort: 30027
+  webPort: "{{ .Values.network.webPort }}"
   hostNetwork: false
 frigate2discordRunAs:
-  user: 568
-  group: 568
+  user: "{{ .Values.runas.user }}"
+  group: "{{ .Values.runas.group }}"
 frigate2discordStorage:
   config:
     type: ixVolume
