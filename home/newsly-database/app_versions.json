@@ -3,7 +3,7 @@
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "last_update": "2024-02-05 13:49:35",
+        "last_update": "2024-02-05 14:08:12",
         "required_features": [
             "normalize/acl",
             "normalize/ixVolume"
@@ -11,8 +11,8 @@
         "human_version": "1.0.1",
         "version": "1.0.1",
         "location": "/__w/home/newsly-database/1.0.1",
-        "app_readme": "",
-        "detailed_readme": "",
+        "app_readme": "Default README content",
+        "detailed_readme": "Default detailed README content",
         "schema": {
             "groups": [
                 {
@@ -401,20 +401,52 @@
         "app_metadata": {
             "runAsContext": [
                 {
-                    "gid": 568,
-                    "uid": 568,
-                    "description": "Static GID and UID for runAsContext"
+                    "userName": "newsly",
+                    "groupName": "newsly",
+                    "gid": 0,
+                    "uid": 0,
+                    "description": "Newsly can run as any non-root user."
                 }
             ],
             "capabilities": [],
             "hostMounts": []
+        },
+        "chart_metadata": {
+            "name": "newsly-database",
+            "description": "Todays tabloids without additional bullshit!",
+            "annotations": {
+                "title": "Newsly Database"
+            },
+            "type": "application",
+            "version": "1.0.1",
+            "appVersion": "0.2",
+            "kubeVersion": ">=1.16.0-0",
+            "maintainers": [
+                {
+                    "name": "departy.xyz",
+                    "url": "https://github.com/martinikolaev/newsly/",
+                    "email": "na@na.com"
+                }
+            ],
+            "home": "https://github.com/martinikolaev/newsly",
+            "icon": "https://raw.githubusercontent.com/martinikolaev/charts/master/logos/newsly.png",
+            "sources": [
+                "https://github.com/WeeJeWel/wg-easy",
+                "https://github.com/truenas/charts/tree/master/charts/wg-easy"
+            ],
+            "keywords": [
+                "news",
+                "newsly",
+                "tabloids",
+                "database"
+            ]
         }
     },
     "1.0.4": {
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "last_update": "2024-02-05 13:49:35",
+        "last_update": "2024-02-05 14:08:12",
         "required_features": [
             "normalize/acl",
             "normalize/ixVolume"
@@ -422,8 +454,8 @@
         "human_version": "1.0.4",
         "version": "1.0.4",
         "location": "/__w/home/newsly-database/1.0.4",
-        "app_readme": "",
-        "detailed_readme": "",
+        "app_readme": "Default README content",
+        "detailed_readme": "Default detailed README content",
         "schema": {
             "groups": [
                 {
@@ -814,13 +846,45 @@
         "app_metadata": {
             "runAsContext": [
                 {
-                    "gid": 568,
-                    "uid": 568,
-                    "description": "Static GID and UID for runAsContext"
+                    "userName": "newsly",
+                    "groupName": "newsly",
+                    "gid": 0,
+                    "uid": 0,
+                    "description": "Newsly can run as any non-root user."
                 }
             ],
             "capabilities": [],
             "hostMounts": []
+        },
+        "chart_metadata": {
+            "name": "newsly-database",
+            "description": "Todays tabloids without additional bullshit!",
+            "annotations": {
+                "title": "Newsly Database"
+            },
+            "type": "application",
+            "version": "1.0.4",
+            "appVersion": "0.2",
+            "kubeVersion": ">=1.16.0-0",
+            "maintainers": [
+                {
+                    "name": "departy.xyz",
+                    "url": "https://github.com/martinikolaev/newsly/",
+                    "email": "na@na.com"
+                }
+            ],
+            "home": "https://github.com/martinikolaev/newsly",
+            "icon": "https://raw.githubusercontent.com/martinikolaev/charts/master/logos/newsly.png",
+            "sources": [
+                "https://github.com/WeeJeWel/wg-easy",
+                "https://github.com/truenas/charts/tree/master/charts/wg-easy"
+            ],
+            "keywords": [
+                "news",
+                "newsly",
+                "tabloids",
+                "database"
+            ]
         }
     }
 }
