@@ -3738,6 +3738,7 @@
                 "newsly",
                 "tabloids"
             ]
-        }
+        },
+        "changelog": "Added user tracking"
     }
 }
