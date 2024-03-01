@@ -1,0 +1,9 @@
+image:
+  repository: registry.departy.xyz/newsly
+  pullPolicy: IfNotPresent
+  tag: '2024.03.01'
+
+scraperimage:
+  repository: registry.departy.xyz/newsly
+  pullPolicy: IfNotPresent
+  tag: '2024.03.01'
