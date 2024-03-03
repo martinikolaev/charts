@@ -3,7 +3,7 @@
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "last_update": "2024-03-03 12:31:12",
+        "last_update": "2024-03-03 12:33:17",
         "required_features": [
             "normalize/acl",
             "normalize/ixVolume"
@@ -440,13 +440,14 @@
                 "tabloids",
                 "database"
             ]
-        }
+        },
+        "changelog": "Ask developer for this"
     },
     "1.0.4": {
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "last_update": "2024-03-03 12:31:12",
+        "last_update": "2024-03-03 12:33:17",
         "required_features": [
             "normalize/acl",
             "normalize/ixVolume"
@@ -885,13 +886,14 @@
                 "tabloids",
                 "database"
             ]
-        }
+        },
+        "changelog": "Ask developer for this"
     },
     "1.0.5": {
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "last_update": "2024-03-03 12:31:12",
+        "last_update": "2024-03-03 12:33:17",
         "required_features": [
             "normalize/acl",
             "normalize/ixVolume"
@@ -1580,6 +1582,7 @@
                 "tabloids",
                 "database"
             ]
-        }
+        },
+        "changelog": "Ask developer for this"
     }
 }

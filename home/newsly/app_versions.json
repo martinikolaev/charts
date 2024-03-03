@@ -3,7 +3,7 @@
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "last_update": "2024-03-03 12:31:12",
+        "last_update": "2024-03-03 12:33:17",
         "required_features": [
             "normalize/acl",
             "normalize/ixVolume"
@@ -573,13 +573,14 @@
                 "newsly",
                 "tabloids"
             ]
-        }
+        },
+        "changelog": "Ask developer for this"
     },
     "1.0.1": {
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "last_update": "2024-03-03 12:31:12",
+        "last_update": "2024-03-03 12:33:17",
         "required_features": [
             "normalize/acl",
             "normalize/ixVolume"
@@ -1195,13 +1196,14 @@
                 "newsly",
                 "tabloids"
             ]
-        }
+        },
+        "changelog": "Ask developer for this"
     },
     "1.0.2": {
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "last_update": "2024-03-03 12:31:12",
+        "last_update": "2024-03-03 12:33:17",
         "required_features": [
             "normalize/acl",
             "normalize/ixVolume"
@@ -1807,13 +1809,14 @@
                 "newsly",
                 "tabloids"
             ]
-        }
+        },
+        "changelog": "Ask developer for this"
     },
     "1.0.8": {
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "last_update": "2024-03-03 12:31:12",
+        "last_update": "2024-03-03 12:33:18",
         "required_features": [
             "normalize/acl",
             "normalize/ixVolume"
@@ -2430,13 +2433,14 @@
                 "newsly",
                 "tabloids"
             ]
-        }
+        },
+        "changelog": "Ask developer for this"
     },
     "1.1.0": {
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "last_update": "2024-03-03 12:31:12",
+        "last_update": "2024-03-03 12:33:18",
         "required_features": [
             "normalize/acl",
             "normalize/ixVolume"
@@ -3084,13 +3088,14 @@
                 "newsly",
                 "tabloids"
             ]
-        }
+        },
+        "changelog": "Ask developer for this"
     },
     "1.1.1": {
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "last_update": "2024-03-03 12:31:13",
+        "last_update": "2024-03-03 12:33:18",
         "required_features": [
             "normalize/acl",
             "normalize/ixVolume"
@@ -3738,13 +3743,14 @@
                 "newsly",
                 "tabloids"
             ]
-        }
+        },
+        "changelog": "Ask developer for this"
     },
     "1.1.2": {
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "last_update": "2024-03-03 12:31:13",
+        "last_update": "2024-03-03 12:33:18",
         "required_features": [
             "normalize/acl",
             "normalize/ixVolume"
@@ -4392,6 +4398,7 @@
                 "newsly",
                 "tabloids"
             ]
-        }
+        },
+        "changelog": "Ask developer for this"
     }
 }
