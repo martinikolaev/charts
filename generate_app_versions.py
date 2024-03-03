@@ -87,7 +87,8 @@ def generate_app_versions_data(app_name, app_path, version, catalog_data):
             "questions": questions_data.get('questions', [])
         },
         "app_metadata": metadata_data,
-        "chart_metadata": chart_metadata
+        "chart_metadata": chart_metadata,
+        "changelog": "Ask developer for this"
     }
     return app_version_data
 
