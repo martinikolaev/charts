@@ -3,7 +3,7 @@
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "last_update": "2024-03-01 20:22:16",
+        "last_update": "2024-03-03 12:31:12",
         "required_features": [
             "normalize/acl",
             "normalize/ixVolume"
@@ -579,7 +579,7 @@
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "last_update": "2024-03-01 20:22:16",
+        "last_update": "2024-03-03 12:31:12",
         "required_features": [
             "normalize/acl",
             "normalize/ixVolume"
@@ -1201,7 +1201,7 @@
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "last_update": "2024-03-01 20:22:16",
+        "last_update": "2024-03-03 12:31:12",
         "required_features": [
             "normalize/acl",
             "normalize/ixVolume"
@@ -1813,7 +1813,7 @@
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "last_update": "2024-03-01 20:22:16",
+        "last_update": "2024-03-03 12:31:12",
         "required_features": [
             "normalize/acl",
             "normalize/ixVolume"
@@ -2436,7 +2436,7 @@
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "last_update": "2024-03-01 20:22:16",
+        "last_update": "2024-03-03 12:31:12",
         "required_features": [
             "normalize/acl",
             "normalize/ixVolume"
@@ -3090,7 +3090,7 @@
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "last_update": "2024-03-01 20:22:16",
+        "last_update": "2024-03-03 12:31:13",
         "required_features": [
             "normalize/acl",
             "normalize/ixVolume"
@@ -3738,14 +3738,13 @@
                 "newsly",
                 "tabloids"
             ]
-        },
-        "changelog" : "Add basic visitation tracker"
+        }
     },
     "1.1.2": {
         "healthy": true,
         "supported": true,
         "healthy_error": null,
-        "last_update": "2024-03-01 20:22:16",
+        "last_update": "2024-03-03 12:31:13",
         "required_features": [
             "normalize/acl",
             "normalize/ixVolume"
@@ -4393,8 +4392,6 @@
                 "newsly",
                 "tabloids"
             ]
-        },
-        "changelog" : "Add header printing"
-
+        }
     }
 }

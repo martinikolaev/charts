@@ -12,7 +12,6 @@ config.py
 auto_config.py
 .DS_Store
 .idea/
-.vscode/
 /docs/api/_build/
 /docs/userguide/_build/
 /gui/local_settings.py
